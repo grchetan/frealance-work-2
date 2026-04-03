@@ -1,0 +1,3118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maheswari Kachori – Authentic Taste of Traditional India</title>
+    <meta
+      name="description"
+      content="Maheswari Kachori – Authentic, hygienic, and delicious kachori and kachori masala delivered across India. Order fresh kachori online today."
+    />
+    <meta
+      name="keywords"
+      content="kachori, kachori masala, Indian snacks, buy kachori online, Maheswari Kachori, authentic kachori"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Nunito:wght@300;400;600;700&family=Yatra+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --saffron: #e8821a;
+        --gold: #f5a623;
+        --deep-red: #c0392b;
+        --crimson: #a93226;
+        --cream: #fdf6ec;
+        --warm-white: #fffbf4;
+        --dark-brown: #3d1c02;
+        --mid-brown: #7a3b1e;
+        --text-dark: #2c1a0e;
+        --text-mid: #5c3d2e;
+        --text-light: #9e7a5a;
+        --border: #f0d9b5;
+        --shadow: rgba(61, 28, 2, 0.15);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Nunito', sans-serif;
+        background: var(--warm-white);
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* ── SCROLLBAR ── */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--cream);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--saffron);
+        border-radius: 3px;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(253, 246, 236, 0.97);
+        backdrop-filter: blur(12px);
+        border-bottom: 2px solid var(--border);
+        padding: 0 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+        transition: box-shadow 0.3s;
+      }
+      nav.scrolled {
+        box-shadow: 0 4px 30px var(--shadow);
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 44px;
+        height: 44px;
+        background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        box-shadow: 0 3px 12px rgba(232, 130, 26, 0.35);
+      }
+      .logo-text {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: var(--dark-brown);
+        line-height: 1.1;
+      }
+      .logo-text span {
+        display: block;
+        font-size: 0.65rem;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 600;
+        color: var(--saffron);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-mid);
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--saffron);
+        transform: scaleX(0);
+        transition: transform 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--saffron);
+      }
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+      .nav-cta {
+        background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+        color: #fff !important;
+        padding: 10px 22px;
+        border-radius: 30px;
+        font-weight: 700 !important;
+        box-shadow: 0 4px 15px rgba(232, 130, 26, 0.4);
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s !important;
+      }
+      .nav-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(232, 130, 26, 0.5) !important;
+      }
+      .nav-cta::after {
+        display: none !important;
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 5px;
+      }
+      .hamburger span {
+        display: block;
+        width: 26px;
+        height: 2.5px;
+        background: var(--dark-brown);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 2px solid var(--border);
+        padding: 24px 5%;
+        z-index: 999;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 600;
+        font-size: 1.1rem;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .mobile-menu a:last-child {
+        border: none;
+      }
+
+      /* ── HERO ── */
+      #home {
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #3d1c02 0%,
+          #7a3b1e 40%,
+          #a93226 70%,
+          #e8821a 100%
+        );
+        position: relative;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+      }
+      .hero-bg-pattern {
+        position: absolute;
+        inset: 0;
+        opacity: 0.08;
+        background-image:
+          repeating-radial-gradient(
+            circle at 20% 20%,
+            #fff 1px,
+            transparent 1px
+          ),
+          repeating-radial-gradient(
+            circle at 80% 80%,
+            #fff 1px,
+            transparent 1px
+          );
+        background-size: 40px 40px;
+      }
+      .hero-circles {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .hero-circles::before {
+        content: '';
+        position: absolute;
+        right: -10%;
+        top: -20%;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(245, 166, 35, 0.25),
+          transparent 70%
+        );
+      }
+      .hero-circles::after {
+        content: '';
+        position: absolute;
+        left: -5%;
+        bottom: -10%;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.06),
+          transparent 70%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 120px 5% 80px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        color: #fff;
+        padding: 8px 18px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+        animation: fadeUp 0.6s ease both;
+      }
+      .hero-badge::before {
+        content: '🌟';
+      }
+      .hero-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        color: #fff;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        animation: fadeUp 0.6s 0.1s ease both;
+      }
+      .hero-title em {
+        font-style: italic;
+        color: var(--gold);
+      }
+      .hero-subtitle {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 36px;
+        animation: fadeUp 0.6s 0.2s ease both;
+      }
+      .hero-btns {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        animation: fadeUp 0.6s 0.3s ease both;
+      }
+      .btn-primary {
+        background: #fff;
+        color: var(--dark-brown);
+        padding: 14px 30px;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.2s;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+      }
+      .btn-primary:hover {
+        background: var(--gold);
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+      }
+      .btn-outline {
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        color: #fff;
+        padding: 14px 30px;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.2s;
+        background: transparent;
+        cursor: pointer;
+        display: inline-block;
+      }
+      .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+      }
+      .btn-whatsapp {
+        background: #25d366;
+        color: #fff;
+        padding: 14px 30px;
+        border-radius: 40px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-whatsapp:hover {
+        background: #1ea855;
+        transform: translateY(-3px);
+      }
+      .hero-visual {
+        position: relative;
+        animation: fadeUp 0.6s 0.2s ease both;
+      }
+      .hero-plate {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 35% 35%,
+          #ffd89b,
+          #f5a623 40%,
+          #c0392b
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.4),
+          inset 0 -10px 30px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        animation: float 4s ease-in-out infinite;
+      }
+      .hero-plate::before {
+        content: '';
+        position: absolute;
+        inset: 15px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 40% 30%,
+          rgba(255, 255, 255, 0.15),
+          transparent 60%
+        );
+      }
+      .kachori-emoji {
+        font-size: clamp(5rem, 10vw, 8rem);
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        position: relative;
+        z-index: 1;
+      }
+      .hero-tag {
+        position: absolute;
+        background: #fff;
+        border-radius: 12px;
+        padding: 10px 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        font-weight: 700;
+        font-size: 0.8rem;
+        color: var(--dark-brown);
+      }
+      .hero-tag-1 {
+        top: 10%;
+        right: -5%;
+        animation: float 3s 0s ease-in-out infinite;
+      }
+      .hero-tag-2 {
+        bottom: 15%;
+        left: -8%;
+        animation: float 3s 0.5s ease-in-out infinite;
+      }
+      .hero-tag-3 {
+        top: 45%;
+        right: -12%;
+        animation: float 3s 1s ease-in-out infinite;
+      }
+      .hero-tag span {
+        color: var(--saffron);
+      }
+      .hero-stats {
+        grid-column: 1/-1;
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        animation: fadeUp 0.6s 0.4s ease both;
+      }
+      .hero-stat {
+        text-align: center;
+      }
+      .hero-stat strong {
+        display: block;
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        color: #fff;
+        font-weight: 900;
+      }
+      .hero-stat span {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      /* ── SECTION COMMON ── */
+      section {
+        padding: 90px 5%;
+      }
+      .section-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--saffron);
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: var(--dark-brown);
+        line-height: 1.2;
+        margin-bottom: 16px;
+      }
+      .section-sub {
+        color: var(--text-mid);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        max-width: 600px;
+      }
+      .section-head {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      .section-head .section-sub {
+        margin: 0 auto;
+      }
+      .divider {
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--saffron), var(--deep-red));
+        border-radius: 2px;
+        margin: 16px auto 0;
+      }
+
+      /* ── BRAND STORY ── */
+      #story {
+        background: var(--cream);
+      }
+      .story-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px;
+        align-items: center;
+      }
+      .story-visual {
+        position: relative;
+      }
+      .story-img {
+        width: 100%;
+        border-radius: 20px;
+        background: linear-gradient(145deg, #f5a623, #c0392b);
+        aspect-ratio: 4/5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 8rem;
+        box-shadow: 0 20px 60px var(--shadow);
+        position: relative;
+        overflow: hidden;
+      }
+      .story-img::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 50%,
+          rgba(61, 28, 2, 0.6)
+        );
+      }
+      .story-img-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 24px;
+        color: #fff;
+        z-index: 1;
+      }
+      .story-img-caption strong {
+        display: block;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+      }
+      .story-img-caption span {
+        font-size: 0.85rem;
+        opacity: 0.85;
+      }
+      .story-badge {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(232, 130, 26, 0.4);
+        text-align: center;
+      }
+      .story-badge strong {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 900;
+        line-height: 1;
+      }
+      .story-badge span {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .story-text .section-sub {
+        max-width: 100%;
+      }
+      .story-points {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .story-point {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .story-point-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        background: linear-gradient(
+          135deg,
+          rgba(232, 130, 26, 0.15),
+          rgba(192, 57, 43, 0.1)
+        );
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+      }
+      .story-point-text strong {
+        display: block;
+        font-weight: 700;
+        color: var(--dark-brown);
+        margin-bottom: 3px;
+      }
+      .story-point-text span {
+        font-size: 0.9rem;
+        color: var(--text-mid);
+      }
+
+      /* ── WHY CHOOSE US ── */
+      #why {
+        background: var(--warm-white);
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 28px;
+        margin-top: 50px;
+      }
+      .why-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 36px 28px;
+        text-align: center;
+        border: 1.5px solid var(--border);
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .why-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .why-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 50px var(--shadow);
+        border-color: var(--saffron);
+      }
+      .why-card:hover::before {
+        opacity: 0.05;
+      }
+      .why-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(232, 130, 26, 0.15),
+          rgba(192, 57, 43, 0.1)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        margin: 0 auto 20px;
+        transition: all 0.3s;
+      }
+      .why-card:hover .why-icon {
+        background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+        box-shadow: 0 8px 20px rgba(232, 130, 26, 0.4);
+      }
+      .why-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--dark-brown);
+        margin-bottom: 10px;
+      }
+      .why-card p {
+        color: var(--text-mid);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      /* ── TRUST BADGES ── */
+      .trust-bar {
+        background: linear-gradient(
+          135deg,
+          var(--dark-brown),
+          var(--mid-brown)
+        );
+        padding: 24px 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #fff;
+      }
+      .trust-item-icon {
+        font-size: 1.6rem;
+      }
+      .trust-item-text strong {
+        display: block;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+      .trust-item-text span {
+        font-size: 0.75rem;
+        opacity: 0.7;
+        letter-spacing: 0.5px;
+      }
+
+      /* ── PRODUCTS ── */
+      #products {
+        background: var(--cream);
+      }
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 32px;
+      }
+      .product-card {
+        background: #fff;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1.5px solid var(--border);
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+      .product-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 60px var(--shadow);
+      }
+      .product-img {
+        aspect-ratio: 4/3;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .product-img-bg {
+        position: absolute;
+        inset: 0;
+      }
+      .product-emoji {
+        font-size: 5rem;
+        position: relative;
+        z-index: 1;
+        filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.2));
+        transition: transform 0.4s;
+      }
+      .product-card:hover .product-emoji {
+        transform: scale(1.1) rotate(-5deg);
+      }
+      .product-badge {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        background: var(--deep-red);
+        color: #fff;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        z-index: 2;
+      }
+      .product-info {
+        padding: 24px;
+      }
+      .product-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--dark-brown);
+        margin-bottom: 6px;
+      }
+      .product-desc {
+        color: var(--text-mid);
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+      .product-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+      .product-meta-tag {
+        background: rgba(232, 130, 26, 0.1);
+        color: var(--saffron);
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+      .product-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+      }
+      .product-price {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--deep-red);
+      }
+      .product-price-sub {
+        font-size: 0.75rem;
+        color: var(--text-light);
+        font-family: 'Nunito', sans-serif;
+        font-weight: 400;
+      }
+      .product-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .btn-cart {
+        background: var(--cream);
+        color: var(--dark-brown);
+        border: 1.5px solid var(--border);
+        padding: 9px 16px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .btn-cart:hover {
+        border-color: var(--saffron);
+        color: var(--saffron);
+      }
+      .btn-buy {
+        background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+        color: #fff;
+        border: none;
+        padding: 9px 18px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 4px 15px rgba(232, 130, 26, 0.3);
+      }
+      .btn-buy:hover {
+        box-shadow: 0 6px 20px rgba(232, 130, 26, 0.5);
+        transform: translateY(-2px);
+      }
+
+      /* ── PRODUCT DETAIL MODAL ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(61, 28, 2, 0.6);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        backdrop-filter: blur(8px);
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal {
+        background: #fff;
+        border-radius: 24px;
+        max-width: 800px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+      }
+      .modal-close {
+        position: sticky;
+        top: 0;
+        float: right;
+        background: var(--cream);
+        border: none;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 16px 16px 0 0;
+        z-index: 10;
+      }
+      .modal-body {
+        padding: 32px;
+        clear: both;
+      }
+      .modal-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      .modal-img {
+        aspect-ratio: 1;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 6rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .modal-img::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.2),
+          transparent 70%
+        );
+      }
+      .modal-info h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--dark-brown);
+        margin-bottom: 8px;
+      }
+      .modal-price {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--deep-red);
+        margin-bottom: 16px;
+      }
+      .modal-desc {
+        color: var(--text-mid);
+        line-height: 1.7;
+        margin-bottom: 24px;
+        font-size: 0.95rem;
+      }
+      .modal-specs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .modal-spec {
+        background: var(--cream);
+        border-radius: 12px;
+        padding: 12px 14px;
+      }
+      .modal-spec label {
+        display: block;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-light);
+        margin-bottom: 3px;
+      }
+      .modal-spec span {
+        font-weight: 700;
+        color: var(--dark-brown);
+        font-size: 0.9rem;
+      }
+      .modal-ingredients {
+        margin-bottom: 24px;
+      }
+      .modal-ingredients h4 {
+        font-weight: 700;
+        color: var(--dark-brown);
+        margin-bottom: 8px;
+      }
+      .modal-ingredients p {
+        color: var(--text-mid);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .modal-serving {
+        background: linear-gradient(
+          135deg,
+          rgba(232, 130, 26, 0.1),
+          rgba(192, 57, 43, 0.05)
+        );
+        border-radius: 12px;
+        padding: 14px 16px;
+        margin-bottom: 24px;
+        border-left: 3px solid var(--saffron);
+      }
+      .modal-serving h4 {
+        font-weight: 700;
+        color: var(--dark-brown);
+        margin-bottom: 6px;
+        font-size: 0.9rem;
+      }
+      .modal-serving p {
+        color: var(--text-mid);
+        font-size: 0.85rem;
+        line-height: 1.6;
+      }
+      .modal-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .modal-actions .btn-buy-full {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 1rem;
+        background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        transition: all 0.2s;
+        box-shadow: 0 6px 20px rgba(232, 130, 26, 0.35);
+      }
+      .modal-actions .btn-buy-full:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(232, 130, 26, 0.5);
+      }
+      .modal-actions .btn-wa {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        font-size: 1rem;
+        background: #25d366;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-weight: 700;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-decoration: none;
+      }
+      .modal-actions .btn-wa:hover {
+        background: #1ea855;
+        transform: translateY(-2px);
+      }
+
+      /* ── ORDER ── */
+      #order {
+        background: var(--warm-white);
+      }
+      .order-container {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 50px;
+        align-items: start;
+      }
+      .order-form-wrap {
+        background: #fff;
+        border-radius: 24px;
+        padding: 40px;
+        border: 1.5px solid var(--border);
+      }
+      .order-form-wrap h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--dark-brown);
+        margin-bottom: 8px;
+      }
+      .order-form-wrap p {
+        color: var(--text-mid);
+        font-size: 0.9rem;
+        margin-bottom: 28px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-group {
+        margin-bottom: 18px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--dark-brown);
+        margin-bottom: 7px;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1.5px solid var(--border);
+        border-radius: 12px;
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.9rem;
+        color: var(--text-dark);
+        background: var(--cream);
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        outline: none;
+      }
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--saffron);
+        box-shadow: 0 0 0 3px rgba(232, 130, 26, 0.12);
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 90px;
+      }
+      .form-group select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%235C3D2E' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 14px center;
+      }
+      .order-cart {
+        background: #fff;
+        border-radius: 24px;
+        border: 1.5px solid var(--border);
+        overflow: hidden;
+        position: sticky;
+        top: 90px;
+      }
+      .order-cart-header {
+        background: linear-gradient(
+          135deg,
+          var(--dark-brown),
+          var(--mid-brown)
+        );
+        color: #fff;
+        padding: 20px 24px;
+      }
+      .order-cart-header h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .order-cart-header p {
+        font-size: 0.8rem;
+        opacity: 0.75;
+      }
+      .cart-items {
+        padding: 20px 24px;
+        min-height: 160px;
+      }
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .cart-item:last-child {
+        border: none;
+      }
+      .cart-item-name {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--dark-brown);
+      }
+      .cart-item-qty {
+        font-size: 0.8rem;
+        color: var(--text-light);
+      }
+      .cart-item-price {
+        font-weight: 700;
+        color: var(--deep-red);
+      }
+      .cart-empty {
+        text-align: center;
+        padding: 30px 0;
+        color: var(--text-light);
+        font-size: 0.9rem;
+      }
+      .cart-summary {
+        background: var(--cream);
+        padding: 16px 24px;
+        border-top: 1.5px solid var(--border);
+      }
+      .cart-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.875rem;
+        color: var(--text-mid);
+        margin-bottom: 8px;
+      }
+      .cart-row.total {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--dark-brown);
+        padding-top: 8px;
+        border-top: 1px solid var(--border);
+        margin-top: 8px;
+      }
+      .cart-wa-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 14px;
+        background: #25d366;
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        border: none;
+        cursor: pointer;
+        border-radius: 0;
+        font-family: 'Nunito', sans-serif;
+        transition: background 0.2s;
+      }
+      .cart-wa-btn:hover {
+        background: #1ea855;
+      }
+      .qty-ctrl {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 8px;
+      }
+      .qty-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1.5px solid var(--border);
+        background: var(--cream);
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--dark-brown);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .qty-btn:hover {
+        background: var(--saffron);
+        color: #fff;
+        border-color: var(--saffron);
+      }
+      .qty-val {
+        font-weight: 700;
+        font-size: 1rem;
+        width: 24px;
+        text-align: center;
+      }
+
+      /* ── TESTIMONIALS ── */
+      #testimonials {
+        background: var(--cream);
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 24px;
+      }
+      .testi-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 28px;
+        border: 1.5px solid var(--border);
+        position: relative;
+        transition: all 0.3s;
+      }
+      .testi-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px var(--shadow);
+      }
+      .testi-quote {
+        font-size: 3rem;
+        color: rgba(232, 130, 26, 0.2);
+        font-family: 'Playfair Display', serif;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .testi-text {
+        color: var(--text-mid);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+      .testi-footer {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .testi-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+      .testi-name {
+        font-weight: 700;
+        color: var(--dark-brown);
+        font-size: 0.9rem;
+      }
+      .testi-city {
+        font-size: 0.75rem;
+        color: var(--text-light);
+      }
+      .testi-stars {
+        color: var(--gold);
+        font-size: 0.9rem;
+        margin-top: 2px;
+      }
+
+      /* ── DELIVERY ── */
+      #delivery {
+        background: linear-gradient(
+          135deg,
+          var(--dark-brown),
+          var(--mid-brown)
+        );
+        color: #fff;
+      }
+      #delivery .section-title {
+        color: #fff;
+      }
+      #delivery .section-label {
+        color: var(--gold);
+      }
+      .delivery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+      .delivery-card {
+        text-align: center;
+        padding: 28px 20px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        transition: all 0.3s;
+      }
+      .delivery-card:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-4px);
+      }
+      .delivery-icon {
+        font-size: 2.5rem;
+        margin-bottom: 16px;
+        display: block;
+      }
+      .delivery-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .delivery-card p {
+        font-size: 0.85rem;
+        opacity: 0.75;
+        line-height: 1.6;
+      }
+
+      /* ── FAQ ── */
+      #faq {
+        background: var(--warm-white);
+      }
+      .faq-list {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        border: 1.5px solid var(--border);
+        border-radius: 16px;
+        margin-bottom: 14px;
+        overflow: hidden;
+      }
+      .faq-q {
+        width: 100%;
+        background: #fff;
+        border: none;
+        text-align: left;
+        padding: 20px 24px;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--dark-brown);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background 0.2s;
+      }
+      .faq-q:hover {
+        background: var(--cream);
+      }
+      .faq-q .icon {
+        font-size: 1.2rem;
+        transition: transform 0.3s;
+        color: var(--saffron);
+      }
+      .faq-q.open .icon {
+        transform: rotate(45deg);
+      }
+      .faq-a {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          padding 0.3s;
+      }
+      .faq-a.open {
+        max-height: 300px;
+      }
+      .faq-a-inner {
+        padding: 0 24px 20px;
+        color: var(--text-mid);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        background: #fff;
+      }
+
+      /* ── CONTACT ── */
+      #contact {
+        background: var(--cream);
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: start;
+      }
+      .contact-info h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--dark-brown);
+        margin-bottom: 12px;
+      }
+      .contact-info p {
+        color: var(--text-mid);
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+      .contact-items {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin-bottom: 32px;
+      }
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .contact-icon {
+        width: 46px;
+        height: 46px;
+        min-width: 46px;
+        border-radius: 12px;
+        background: linear-gradient(
+          135deg,
+          rgba(232, 130, 26, 0.15),
+          rgba(192, 57, 43, 0.1)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+      }
+      .contact-item-text strong {
+        display: block;
+        font-weight: 700;
+        color: var(--dark-brown);
+        font-size: 0.9rem;
+        margin-bottom: 2px;
+      }
+      .contact-item-text span,
+      .contact-item-text a {
+        color: var(--text-mid);
+        font-size: 0.875rem;
+        text-decoration: none;
+      }
+      .contact-item-text a:hover {
+        color: var(--saffron);
+      }
+      .social-links {
+        display: flex;
+        gap: 12px;
+      }
+      .social-btn {
+        width: 46px;
+        height: 46px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .social-btn-ig {
+        background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      }
+      .social-btn-fb {
+        background: #1877f2;
+      }
+      .social-btn-wa {
+        background: #25d366;
+      }
+      .social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+      .map-embed {
+        width: 100%;
+        height: 380px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, var(--cream), #e8d5b7);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid var(--border);
+        color: var(--text-mid);
+        gap: 12px;
+        overflow: hidden;
+        position: relative;
+      }
+      .map-embed::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 30px,
+            rgba(232, 130, 26, 0.05) 30px,
+            rgba(232, 130, 26, 0.05) 31px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 30px,
+            rgba(232, 130, 26, 0.05) 30px,
+            rgba(232, 130, 26, 0.05) 31px
+          );
+      }
+      .map-pin {
+        font-size: 3rem;
+        position: relative;
+        z-index: 1;
+      }
+      .map-text {
+        font-weight: 700;
+        color: var(--dark-brown);
+        position: relative;
+        z-index: 1;
+      }
+      .map-sub {
+        font-size: 0.85rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── CTA BAND ── */
+      .cta-band {
+        background: linear-gradient(135deg, var(--saffron), var(--deep-red));
+        padding: 70px 5%;
+        text-align: center;
+      }
+      .cta-band h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 14px;
+      }
+      .cta-band p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 1.05rem;
+        margin-bottom: 32px;
+      }
+      .cta-band-btns {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: var(--dark-brown);
+        color: #fff;
+        padding: 60px 5% 0;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 50px;
+        padding-bottom: 50px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .footer-brand .logo-text {
+        color: #fff;
+      }
+      .footer-brand .logo-text span {
+        color: var(--gold);
+      }
+      .footer-tagline {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.875rem;
+        margin: 14px 0 24px;
+        line-height: 1.6;
+      }
+      .footer-social {
+        display: flex;
+        gap: 10px;
+      }
+      .footer-social a {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .footer-social a:hover {
+        background: var(--saffron);
+      }
+      .footer-col h4 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 18px;
+        color: var(--gold);
+      }
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.65);
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--gold);
+      }
+      .footer-contact li {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 0.875rem;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .footer-contact li span {
+        font-size: 0.9rem;
+      }
+      .footer-bottom {
+        padding: 20px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .footer-bottom p {
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 0.8rem;
+      }
+
+      /* ── CART NOTIFICATION ── */
+      .cart-notif {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: var(--dark-brown);
+        color: #fff;
+        padding: 14px 20px;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        font-weight: 700;
+        font-size: 0.9rem;
+        z-index: 3000;
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .cart-notif.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .cart-count {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        background: var(--deep-red);
+        color: #fff;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        font-size: 0.65rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-12px);
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1024px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .hero-visual {
+          display: none;
+        }
+        .hero-stats {
+          justify-content: center;
+        }
+        .story-grid {
+          grid-template-columns: 1fr;
+        }
+        .story-visual {
+          display: none;
+        }
+        .order-container {
+          grid-template-columns: 1fr;
+        }
+        .order-cart {
+          position: static;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .modal-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 768px) {
+        nav {
+          height: 64px;
+          padding: 0 4%;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+        section {
+          padding: 70px 4%;
+        }
+        .hero-stats {
+          gap: 24px;
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .modal-grid {
+          grid-template-columns: 1fr;
+        }
+        .modal-specs {
+          grid-template-columns: 1fr;
+        }
+        .modal-body {
+          padding: 20px;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 2rem;
+        }
+        .hero-btns {
+          flex-direction: column;
+        }
+        .hero-btns a,
+        .hero-btns button {
+          width: 100%;
+          text-align: center;
+        }
+        .trust-bar {
+          gap: 24px;
+        }
+        .cta-band-btns {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav id="mainNav">
+      <a href="#home" class="logo">
+        <div class="logo-icon">🥟</div>
+        <div class="logo-text">
+          Maheswari Kachori<span>Est. 1985 · Authentic &amp; Fresh</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#order">Order</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <a
+            href="https://wa.me/919999999999?text=Hello! I want to order Maheswari Kachori."
+            target="_blank"
+            class="nav-cta"
+            >Order on WhatsApp</a
+          >
+        </li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home" onclick="closeMobileMenu()">🏠 Home</a>
+      <a href="#story" onclick="closeMobileMenu()">📖 Our Story</a>
+      <a href="#products" onclick="closeMobileMenu()">🥟 Products</a>
+      <a href="#order" onclick="closeMobileMenu()">🛒 Order</a>
+      <a href="#contact" onclick="closeMobileMenu()">📞 Contact</a>
+      <a
+        href="https://wa.me/919999999999?text=Hello! I want to order Maheswari Kachori."
+        target="_blank"
+        style="color: #25d366"
+        >💬 Order on WhatsApp</a
+      >
+    </div>
+
+    <!-- HERO -->
+    <section id="home">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-circles"></div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge">Delivering Across India Since 1985</div>
+          <h1 class="hero-title">
+            Authentic Taste of<br /><em>Traditional Kachori</em>
+          </h1>
+          <p class="hero-subtitle">
+            Made with love, packed with flavour — Maheswari Kachori brings you
+            the pure, wholesome taste of home-style Indian kachori, crafted with
+            heritage recipes and the finest spices.
+          </p>
+          <div class="hero-btns">
+            <a href="#order" class="btn-primary">🛒 Order Now</a>
+            <a href="#products" class="btn-outline">View Products</a>
+            <a
+              href="https://wa.me/919999999999?text=Hello! I want to order Maheswari Kachori."
+              target="_blank"
+              class="btn-whatsapp"
+              >💬 WhatsApp</a
+            >
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-plate">
+            <span class="kachori-emoji">🥟</span>
+          </div>
+          <div class="hero-tag hero-tag-1">⭐ 4.9 Rating<span></span></div>
+          <div class="hero-tag hero-tag-2">
+            🚚 Pan India<br /><span
+              style="font-size: 0.7rem; color: var(--text-light)"
+              >Delivery</span
+            >
+          </div>
+          <div class="hero-tag hero-tag-3">
+            ✅ Hygienic<br /><span
+              style="font-size: 0.7rem; color: var(--text-light)"
+              >Preparation</span
+            >
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <strong>38+</strong><span>Years of Taste</span>
+          </div>
+          <div class="hero-stat">
+            <strong>50K+</strong><span>Happy Customers</span>
+          </div>
+          <div class="hero-stat">
+            <strong>100%</strong><span>Natural Ingredients</span>
+          </div>
+          <div class="hero-stat">
+            <strong>25+</strong><span>Cities Served</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+      <div class="trust-item">
+        <span class="trust-item-icon">🌿</span>
+        <div class="trust-item-text">
+          <strong>Fresh Taste</strong><span>Daily Preparation</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item-icon">✅</span>
+        <div class="trust-item-text">
+          <strong>Hygienic</strong><span>Certified Kitchen</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item-icon">🌾</span>
+        <div class="trust-item-text">
+          <strong>Quality Ingredients</strong><span>No Preservatives</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item-icon">🚚</span>
+        <div class="trust-item-text">
+          <strong>Fast Delivery</strong><span>Pan India Shipping</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-item-icon">🏅</span>
+        <div class="trust-item-text">
+          <strong>Heritage Recipe</strong><span>Since 1985</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORY -->
+    <section id="story">
+      <div class="story-grid">
+        <div class="story-visual reveal">
+          <div class="story-img">
+            🫙
+            <div class="story-img-caption">
+              <strong>Maheswari Family Kitchen</strong
+              ><span>Traditional methods, modern hygiene</span>
+            </div>
+          </div>
+          <div class="story-badge">
+            <strong>38+</strong><span>Years of Trust</span>
+          </div>
+        </div>
+        <div class="story-text reveal">
+          <div class="section-label">Our Heritage</div>
+          <h2 class="section-title">
+            A Family Recipe Turned Into a Beloved Brand
+          </h2>
+          <p class="section-sub">
+            What started in a small home kitchen in Indore in 1985 has grown
+            into one of the most trusted names for authentic kachori across
+            India. Founded by Shrimati Saraswati Devi Maheswari, our recipes
+            have been passed down across three generations — every batch made
+            with the same passion, the same spices, and the same love.
+          </p>
+          <div class="story-points">
+            <div class="story-point">
+              <div class="story-point-icon">🏡</div>
+              <div class="story-point-text">
+                <strong>Home-Style Craft</strong
+                ><span
+                  >Every kachori is made in small batches to preserve the
+                  original homemade texture and flavour.</span
+                >
+              </div>
+            </div>
+            <div class="story-point">
+              <div class="story-point-icon">🌶️</div>
+              <div class="story-point-text">
+                <strong>Heritage Spice Blends</strong
+                ><span
+                  >Our masala is prepared using a 3-generation-old family
+                  formula — never shared, never compromised.</span
+                >
+              </div>
+            </div>
+            <div class="story-point">
+              <div class="story-point-icon">📦</div>
+              <div class="story-point-text">
+                <strong>Vacuum Packed for Freshness</strong
+                ><span
+                  >State-of-the-art packaging ensures the kachori reaches you as
+                  fresh as the day it was made.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="why">
+      <div class="section-head reveal">
+        <div class="section-label">Why Us</div>
+        <h2 class="section-title">Why Thousands Choose Maheswari Kachori</h2>
+        <div class="divider"></div>
+        <p class="section-sub">
+          We don't just sell snacks — we deliver a piece of authentic Indian
+          tradition, packed with care and delivered with pride.
+        </p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon">🌿</div>
+          <h3>100% Natural</h3>
+          <p>
+            Zero artificial colours, flavours, or preservatives. Just pure
+            ingredients sourced directly from trusted farms.
+          </p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">👩‍🍳</div>
+          <h3>Expert Craftsmanship</h3>
+          <p>
+            Prepared by skilled artisans trained in traditional Indian cooking
+            methods passed through generations.
+          </p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">🔬</div>
+          <h3>Hygienic Standards</h3>
+          <p>
+            Our kitchen is FSSAI certified with regular quality checks. We
+            follow strict hygiene protocols at every stage.
+          </p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">📦</div>
+          <h3>Premium Packaging</h3>
+          <p>
+            Vacuum-sealed, tamper-proof packs that lock in freshness and extend
+            shelf life without any artificial means.
+          </p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">🚚</div>
+          <h3>Pan India Delivery</h3>
+          <p>
+            We deliver across 25+ cities in India using trusted courier partners
+            with real-time tracking.
+          </p>
+        </div>
+        <div class="why-card reveal">
+          <div class="why-icon">💬</div>
+          <h3>Easy Ordering</h3>
+          <p>
+            Order via WhatsApp, website, or phone — we make getting your
+            favourite kachori as simple as possible.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products" style="background: var(--cream)">
+      <div class="section-head reveal">
+        <div class="section-label">Our Products</div>
+        <h2 class="section-title">Freshly Crafted, Lovingly Packed</h2>
+        <div class="divider"></div>
+        <p class="section-sub">
+          Explore our signature range of kachori and masala — every product a
+          testament to our heritage and quality.
+        </p>
+      </div>
+      <div class="product-grid" id="productGrid">
+        <!-- Cards rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ORDER -->
+    <section id="order">
+      <div class="section-head reveal">
+        <div class="section-label">Place Your Order</div>
+        <h2 class="section-title">Order Fresh Kachori Today</h2>
+        <div class="divider"></div>
+        <p class="section-sub">
+          Fill in your details and we'll confirm your order within minutes via
+          WhatsApp or phone call.
+        </p>
+      </div>
+      <div class="order-container">
+        <div class="order-form-wrap reveal">
+          <h3>📋 Order Details</h3>
+          <p>
+            Fill the form below or directly order via WhatsApp for instant
+            confirmation.
+          </p>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label
+              ><input
+                type="text"
+                id="orderName"
+                placeholder="e.g. Rahul Sharma"
+              />
+            </div>
+            <div class="form-group">
+              <label>Mobile Number *</label
+              ><input
+                type="tel"
+                id="orderMobile"
+                placeholder="+91 99999 99999"
+              />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Delivery Address *</label
+            ><textarea
+              id="orderAddress"
+              placeholder="House No., Street, Locality..."
+            ></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>City *</label
+              ><input type="text" id="orderCity" placeholder="e.g. Indore" />
+            </div>
+            <div class="form-group">
+              <label>PIN Code</label
+              ><input type="text" id="orderPin" placeholder="e.g. 452001" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Product *</label>
+              <select id="orderProduct">
+                <option value="">-- Select Product --</option>
+                <option value="Classic Kachori (250g) - ₹149">
+                  Classic Kachori (250g) - ₹149
+                </option>
+                <option value="Spicy Urad Dal Kachori (500g) - ₹269">
+                  Spicy Urad Dal Kachori (500g) - ₹269
+                </option>
+                <option value="Premium Kachori Masala (100g) - ₹99">
+                  Premium Kachori Masala (100g) - ₹99
+                </option>
+                <option value="Grand Combo Pack - ₹449">
+                  Grand Combo Pack - ₹449
+                </option>
+                <option value="Party Pack (1kg Kachori + 200g Masala) - ₹799">
+                  Party Pack (1kg) - ₹799
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Quantity</label>
+              <select id="orderQty">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6+</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Special Instructions (optional)</label
+            ><textarea
+              id="orderNotes"
+              placeholder="Any dietary preferences, delivery time preference..."
+            ></textarea>
+          </div>
+          <div
+            style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px"
+          >
+            <button
+              class="btn-buy"
+              style="padding: 14px 28px; font-size: 1rem; border-radius: 12px"
+              onclick="submitOrderWA()"
+            >
+              💬 Order via WhatsApp
+            </button>
+            <button
+              class="btn-cart"
+              style="padding: 14px 28px; font-size: 1rem; border-radius: 12px"
+              onclick="addToCart()"
+            >
+              🛒 Add to Cart
+            </button>
+          </div>
+        </div>
+        <div class="order-cart reveal">
+          <div class="order-cart-header">
+            <h3>🛒 Your Cart</h3>
+            <p>Review items before checkout</p>
+          </div>
+          <div class="cart-items" id="cartItems">
+            <div class="cart-empty" id="cartEmpty">
+              Your cart is empty.<br />Add items to get started!
+            </div>
+          </div>
+          <div class="cart-summary" id="cartSummary" style="display: none">
+            <div class="cart-row">
+              <span>Subtotal</span><span id="cartSubtotal">₹0</span>
+            </div>
+            <div class="cart-row"><span>Delivery</span><span>₹50</span></div>
+            <div class="cart-row total">
+              <span>Total</span><span id="cartTotal">₹50</span>
+            </div>
+          </div>
+          <button class="cart-wa-btn" onclick="checkoutWA()">
+            💬 Checkout via WhatsApp
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" style="background: var(--cream)">
+      <div class="section-head reveal">
+        <div class="section-label">What Customers Say</div>
+        <h2 class="section-title">Loved by Thousands Across India</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">
+            The kachori tastes exactly like what my Nani used to make. I ordered
+            3 packs for our family gathering and everyone kept asking where I
+            got it from!
+          </p>
+          <div class="testi-footer">
+            <div class="testi-avatar">P</div>
+            <div>
+              <div class="testi-name">Priya Agarwal</div>
+              <div class="testi-city">Jaipur, Rajasthan</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">
+            Ordered the Kachori Masala separately and it's absolutely brilliant.
+            I use it in my cooking now. Authentic flavour, no artificial taste
+            at all.
+          </p>
+          <div class="testi-footer">
+            <div class="testi-avatar">R</div>
+            <div>
+              <div class="testi-name">Rajesh Mehta</div>
+              <div class="testi-city">Mumbai, Maharashtra</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">
+            Packaging was excellent and the product arrived fresh. The Combo
+            Pack is great value — kachori was crispy even 3 days after delivery!
+          </p>
+          <div class="testi-footer">
+            <div class="testi-avatar">A</div>
+            <div>
+              <div class="testi-name">Anita Verma</div>
+              <div class="testi-city">Delhi, NCR</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">
+            I've tried many brands but Maheswari Kachori is unmatched. The spice
+            level is perfect and the filling is so generous. Will keep ordering!
+          </p>
+          <div class="testi-footer">
+            <div class="testi-avatar">S</div>
+            <div>
+              <div class="testi-name">Sanjay Gupta</div>
+              <div class="testi-city">Bhopal, M.P.</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">
+            WhatsApp ordering was so smooth! Placed the order, got confirmation
+            in 5 minutes. Delivery was on time. Very professional and tasty!
+          </p>
+          <div class="testi-footer">
+            <div class="testi-avatar">N</div>
+            <div>
+              <div class="testi-name">Neha Singh</div>
+              <div class="testi-city">Lucknow, U.P.</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">
+            The Party Pack is my go-to for every festival now. Ordered 5 times
+            already. Family loves it and it's so convenient. 10/10 recommend!
+          </p>
+          <div class="testi-footer">
+            <div class="testi-avatar">M</div>
+            <div>
+              <div class="testi-name">Mohan Lal Sharma</div>
+              <div class="testi-city">Indore, M.P.</div>
+              <div class="testi-stars">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DELIVERY -->
+    <section id="delivery">
+      <div class="section-head reveal">
+        <div class="section-label">Delivery & Quality</div>
+        <h2 class="section-title">From Our Kitchen to Your Doorstep</h2>
+        <div
+          class="divider"
+          style="
+            background: linear-gradient(90deg, var(--gold), var(--saffron));
+          "
+        ></div>
+      </div>
+      <div class="delivery-grid">
+        <div class="delivery-card reveal">
+          <span class="delivery-icon">📦</span>
+          <h3>Freshly Packed</h3>
+          <p>
+            Every order is packed fresh on the day of dispatch — never
+            pre-stored or stale.
+          </p>
+        </div>
+        <div class="delivery-card reveal">
+          <span class="delivery-icon">🔒</span>
+          <h3>Vacuum Sealed</h3>
+          <p>
+            Tamper-proof vacuum packaging locks in freshness and extends shelf
+            life up to 15 days.
+          </p>
+        </div>
+        <div class="delivery-card reveal">
+          <span class="delivery-icon">🚚</span>
+          <h3>Express Delivery</h3>
+          <p>
+            Orders dispatched within 24 hours via top courier partners. Track
+            your order in real time.
+          </p>
+        </div>
+        <div class="delivery-card reveal">
+          <span class="delivery-icon">🌡️</span>
+          <h3>Temperature Safe</h3>
+          <p>
+            Packaging designed to maintain quality in transit — from cold
+            winters to summer heat.
+          </p>
+        </div>
+        <div class="delivery-card reveal">
+          <span class="delivery-icon">📞</span>
+          <h3>Order Support</h3>
+          <p>
+            Our team is available 9 AM – 8 PM to answer queries and help with
+            your orders.
+          </p>
+        </div>
+        <div class="delivery-card reveal">
+          <span class="delivery-icon">✅</span>
+          <h3>FSSAI Certified</h3>
+          <p>
+            Prepared in a fully licensed kitchen following all food safety and
+            hygiene regulations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="section-head reveal">
+        <div class="section-label">Got Questions?</div>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            How long does the kachori stay fresh after delivery?
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Our kachoris are vacuum-sealed and stay fresh for up to 15 days
+              from the date of packing. Once opened, we recommend consuming them
+              within 3–4 days. Store in a cool, dry place away from direct
+              sunlight.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            Do you use any artificial preservatives or colours?
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Absolutely not. All our products are made with 100% natural
+              ingredients. We use no artificial preservatives, colours, or
+              flavour enhancers of any kind. What you taste is real, traditional
+              Indian food.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            How do I place an order? <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              You can order through three ways: (1) Fill the order form on this
+              website, (2) Send us a WhatsApp message at +91-99999-99999, or (3)
+              Call us directly at +91-99999-99999. We confirm all orders within
+              30 minutes during business hours.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            Do you deliver outside Indore? <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Yes! We deliver pan India to 25+ cities including Delhi, Mumbai,
+              Jaipur, Bhopal, Lucknow, Pune, Hyderabad, Ahmedabad, and more.
+              Delivery takes 2–4 business days depending on your location.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            What payment methods do you accept? <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              We accept UPI (PhonePe, Google Pay, Paytm), bank transfer, and
+              Cash on Delivery for most pin codes. Payment details are shared
+              after order confirmation via WhatsApp.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            Can I order in bulk for events or weddings?
+            <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              Absolutely! We offer special bulk pricing for weddings, corporate
+              events, and festivals. Contact us via WhatsApp or phone for custom
+              quotes. Minimum bulk order is 5 kg with 3–5 days advance notice.
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            How should I reheat the kachori? <span class="icon">+</span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">
+              For best results, heat in an air fryer at 160°C for 5–6 minutes,
+              or in an oven at 180°C for 8–10 minutes. You can also re-fry in
+              oil for 2–3 minutes on medium flame. Avoid microwaving as it makes
+              the crust soft.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <div class="cta-band reveal">
+      <h2>Ready to Experience Authentic Kachori?</h2>
+      <p>
+        Order now and taste 38 years of heritage flavour delivered fresh to your
+        door.
+      </p>
+      <div class="cta-band-btns">
+        <a href="#order" class="btn-primary">🛒 Order Now</a>
+        <a
+          href="https://wa.me/919999999999?text=Hello! I want to order Maheswari Kachori. Please share the current menu and pricing."
+          target="_blank"
+          class="btn-whatsapp"
+          >💬 WhatsApp Order</a
+        >
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="section-label">Get in Touch</div>
+          <h3>We'd Love to Hear From You</h3>
+          <p>
+            Whether you have a question, need bulk pricing, or just want to say
+            hello — reach out to us anytime. Our team is happy to help!
+          </p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div class="contact-item-text">
+                <strong>Phone / WhatsApp</strong
+                ><a href="tel:+919999999999">+91 99999 99999</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div class="contact-item-text">
+                <strong>Email</strong
+                ><a href="mailto:orders@maheswarikachori.com"
+                  >orders@maheswarikachori.com</a
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div class="contact-item-text">
+                <strong>Address</strong
+                ><span
+                  >12, Rajwada Market, Indore – 452001<br />Madhya Pradesh,
+                  India</span
+                >
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🕐</div>
+              <div class="contact-item-text">
+                <strong>Business Hours</strong
+                ><span
+                  >Monday – Saturday: 9:00 AM – 8:00 PM<br />Sunday: 10:00 AM –
+                  6:00 PM</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="#" class="social-btn social-btn-ig" title="Instagram"
+              >📸</a
+            >
+            <a href="#" class="social-btn social-btn-fb" title="Facebook">👍</a>
+            <a
+              href="https://wa.me/919999999999"
+              target="_blank"
+              class="social-btn social-btn-wa"
+              title="WhatsApp"
+              >💬</a
+            >
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="map-embed">
+            <div class="map-pin">📍</div>
+            <div class="map-text">Maheswari Kachori, Indore</div>
+            <div class="map-sub">12, Rajwada Market, Indore – 452001</div>
+            <a
+              href="https://maps.google.com"
+              target="_blank"
+              class="btn-primary"
+              style="margin-top: 16px; color: var(--dark-brown)"
+              >Open in Google Maps</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a
+            href="#home"
+            class="logo"
+            style="margin-bottom: 14px; display: inline-flex"
+          >
+            <div class="logo-icon">🥟</div>
+            <div class="logo-text" style="color: #fff">
+              Maheswari Kachori<span style="color: var(--gold)"
+                >Authentic · Fresh · Traditional</span
+              >
+            </div>
+          </a>
+          <p class="footer-tagline">
+            Three generations of flavour. One family's pride. Maheswari Kachori
+            brings you the authentic taste of India's most beloved snack — right
+            to your doorstep.
+          </p>
+          <div class="footer-social">
+            <a href="#" title="Instagram">📸</a>
+            <a href="#" title="Facebook">👍</a>
+            <a
+              href="https://wa.me/919999999999"
+              target="_blank"
+              title="WhatsApp"
+              >💬</a
+            >
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#order">Order</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Products</h4>
+          <ul class="footer-links">
+            <li><a href="#products">Classic Kachori</a></li>
+            <li><a href="#products">Spicy Urad Dal Kachori</a></li>
+            <li><a href="#products">Kachori Masala</a></li>
+            <li><a href="#products">Combo Pack</a></li>
+            <li><a href="#products">Party Pack</a></li>
+            <li><a href="#contact">Bulk Orders</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul class="footer-contact" style="list-style: none">
+            <li><span>📞</span> +91 99999 99999</li>
+            <li><span>📧</span> orders@maheswarikachori.com</li>
+            <li><span>📍</span> 12, Rajwada Market, Indore – 452001, M.P.</li>
+            <li><span>🕐</span> Mon–Sat: 9 AM – 8 PM</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          © 2024 Maheswari Kachori. All rights reserved. FSSAI Lic. No.
+          11224999000275
+        </p>
+        <p>Made with ❤️ in Indore, India</p>
+      </div>
+    </footer>
+
+    <!-- PRODUCT MODAL -->
+    <div class="modal-overlay" id="productModal">
+      <div class="modal">
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div class="modal-body">
+          <div class="modal-grid" id="modalContent"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CART NOTIFICATION -->
+    <div class="cart-notif" id="cartNotif">✅ Added to cart!</div>
+
+    <script>
+      // ── PRODUCTS DATA ──
+      const products = [
+        {
+          id: 1,
+          name: 'Classic Urad Dal Kachori',
+          badge: 'Best Seller',
+          emoji: '🥟',
+          price: 149,
+          weight: '250g',
+          shelf: '15 days',
+          bgFrom: '#f5a623',
+          bgTo: '#e8821a',
+          desc: 'Our signature golden-crisp kachori stuffed with spiced urad dal filling — the original recipe that started it all. Perfectly balanced flavours with just the right amount of heat.',
+          longDesc:
+            'A celebration of traditional Indian flavours, our Classic Urad Dal Kachori is made fresh using stone-ground urad dal, aromatic spices, and our proprietary masala blend. The outer shell is hand-rolled to achieve that perfect crisp-yet-flaky texture. Every bite delivers a burst of authentic Indian street food flavour.',
+          ingredients:
+            'Maida, Urad Dal, Asafoetida, Cumin Seeds, Fennel Seeds, Coriander Seeds, Dry Ginger, Red Chilli, Amchur Powder, Salt, Refined Vegetable Oil.',
+          serving:
+            'Serve with green chutney, tamarind chutney, or plain yoghurt. Re-heat in air fryer for 5 min at 160°C for best crispness. Pairs beautifully with masala chai!',
+          tags: ['Veg', 'No Preservatives', 'Traditional'],
+        },
+        {
+          id: 2,
+          name: 'Spicy Pyaaz Kachori',
+          badge: 'Popular',
+          emoji: '🫓',
+          price: 169,
+          weight: '250g',
+          shelf: '15 days',
+          bgFrom: '#c0392b',
+          bgTo: '#922b21',
+          desc: 'A bold, fiery kachori loaded with spiced onion filling and a kick of green chilli — for those who like their snacks with full-on flavour.',
+          longDesc:
+            'Inspired by the famous kachoris of Rajasthan, our Spicy Pyaaz Kachori features a melt-in-your-mouth onion filling seasoned with bold Indian spices. The crispy shell gives way to a filling that is savoury, tangy, and delightfully spicy — a perfect treat for spice lovers.',
+          ingredients:
+            'Maida, Onion (dried flakes), Fennel Seeds, Green Chilli, Coriander, Cumin, Amchur, Garam Masala, Salt, Refined Oil.',
+          serving:
+            'Best served hot with sweet tamarind chutney or spicy garlic chutney. Crumble over poha or upma for a delicious twist. Re-heat in oven at 180°C for 8 minutes.',
+          tags: ['Veg', 'Spicy', 'Heritage Recipe'],
+        },
+        {
+          id: 3,
+          name: 'Premium Kachori Masala',
+          badge: 'New',
+          emoji: '🌶️',
+          price: 99,
+          weight: '100g',
+          shelf: '90 days',
+          bgFrom: '#e8821a',
+          bgTo: '#c0392b',
+          desc: "Our family's secret spice blend — now available separately. Use it in your own cooking to recreate the authentic Maheswari Kachori flavour at home.",
+          longDesc:
+            'After years of customer requests, we have made our signature Kachori Masala available as a standalone product. This hand-blended masala uses 18 whole spices roasted and ground in the traditional way. Use it as a stuffing masala, sprinkle it over chaats, mix into yoghurt dips, or season vegetables — the possibilities are endless.',
+          ingredients:
+            'Coriander, Fennel, Cumin, Dry Mango Powder, Dry Ginger, Red Chilli, Black Pepper, Asafoetida, Salt, Cardamom, Clove, Cinnamon.',
+          serving:
+            'Use 1–2 tsp per 100g of dal or vegetable filling. Can also be used as a chaat masala sprinkle, added to raita, or mixed into batters for pakoras and samosas.',
+          tags: ['Veg', 'Versatile', 'No Preservatives'],
+        },
+        {
+          id: 4,
+          name: 'Grand Combo Pack',
+          badge: 'Best Value',
+          emoji: '🎁',
+          price: 449,
+          weight: '600g total',
+          shelf: '15 days',
+          bgFrom: '#7A3B1E',
+          bgTo: '#3D1C02',
+          desc: 'Get the best of both worlds! This combo includes Classic Kachori (250g) + Spicy Pyaaz Kachori (250g) + Kachori Masala (100g) — perfect for gifting or family packs.',
+          longDesc:
+            "Our most popular gift pack, the Grand Combo brings together all three of our hero products in one elegant box. Perfect for festivals, corporate gifting, family celebrations, or when you just can't choose! Each pack is individually sealed to maintain freshness and presented in our premium branded packaging.",
+          ingredients:
+            'Contents: Classic Urad Dal Kachori, Spicy Pyaaz Kachori, Premium Kachori Masala. All ingredients as per individual products.',
+          serving:
+            'Serve the kachoris with our included masala sprinkled on top, alongside chutney and chai. The masala pack can be used separately for future cooking.',
+          tags: ['Gift Pack', 'Best Value', 'Family Size'],
+        },
+        {
+          id: 5,
+          name: 'Party Pack (1kg Kachori)',
+          badge: 'Bulk',
+          emoji: '🥳',
+          price: 799,
+          weight: '1000g',
+          shelf: '15 days',
+          bgFrom: '#5C3D2E',
+          bgTo: '#A93226',
+          desc: 'Hosting a party, puja, or family get-together? This 1kg party pack of mixed kachori (Classic + Spicy) serves 10–15 people and comes with a complimentary masala sachet.',
+          longDesc:
+            'Our Party Pack is designed for joyful occasions. You get 1kg of our mixed kachori assortment (500g Classic + 500g Spicy), vacuum-sealed in a premium box with a complimentary 50g masala sachet. Includes a serving guide card and chutney preparation tips.',
+          ingredients:
+            'Mixed kachori assortment. See individual product ingredient lists. Includes complimentary Kachori Masala (50g).',
+          serving:
+            'Can serve 10–15 people as a snack. Arrange kachoris on a platter, break slightly in the centre, pour a spoon of potato masala (recipe on box) and top with chutneys and sev for a full chaat experience.',
+          tags: ['Party Size', 'Event Ready', 'Value Pack'],
+        },
+        {
+          id: 6,
+          name: 'Meethi Mawa Kachori',
+          badge: 'Special',
+          emoji: '🍮',
+          price: 189,
+          weight: '200g',
+          shelf: '10 days',
+          bgFrom: '#F5A623',
+          bgTo: '#E8821A',
+          desc: 'A festive special! Sweet kachori stuffed with rich mawa, dry fruits, and aromatic cardamom — a beloved Rajasthani tradition for celebrations and mithai lovers.',
+          longDesc:
+            'A departure from our savoury range, the Meethi Mawa Kachori is a festive delight that captures the essence of Indian sweet traditions. Each kachori is generously filled with pure khoya (mawa), chopped dry fruits, saffron, and fragrant cardamom, then fried to golden perfection.',
+          ingredients:
+            'Maida, Mawa (Khoya), Almonds, Cashews, Pistachios, Cardamom, Saffron, Sugar, Ghee, Refined Oil.',
+          serving:
+            'Best enjoyed at room temperature or slightly warm. Pair with a cup of warm milk or serve as a mithai on festive occasions. Dust with powdered sugar before serving for a festive touch.',
+          tags: ['Sweet', 'Festive', 'Mawa Stuffed'],
+        },
+      ];
+
+      let cart = [];
+
+      // ── RENDER PRODUCTS ──
+      function renderProducts() {
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = products
+          .map(
+            (p) => `
+    <div class="product-card" onclick="openModal(${p.id})">
+      <div class="product-img" style="background:linear-gradient(135deg,${p.bgFrom},${p.bgTo});">
+        <div class="product-img-bg"></div>
+        <div class="product-emoji">${p.emoji}</div>
+        <div class="product-badge">${p.badge}</div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <p class="product-desc">${p.desc.substring(0, 100)}...</p>
+        <div class="product-meta">${p.tags.map((t) => `<span class="product-meta-tag">${t}</span>`).join('')}</div>
+        <div class="product-bottom">
+          <div class="product-price">₹${p.price}<div class="product-price-sub">${p.weight} · ${p.shelf}</div></div>
+          <div class="product-actions">
+            <button class="btn-cart" onclick="event.stopPropagation();addToCartDirect(${p.id})">+ Cart</button>
+            <button class="btn-buy" onclick="event.stopPropagation();buyNow(${p.id})">Buy Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `,
+          )
+          .join('');
+      }
+
+      // ── MODAL ──
+      function openModal(id) {
+        const p = products.find((x) => x.id === id);
+        const modal = document.getElementById('productModal');
+        document.getElementById('modalContent').innerHTML = `
+    <div class="modal-img" style="background:linear-gradient(135deg,${p.bgFrom},${p.bgTo});">
+      <span style="font-size:7rem;position:relative;z-index:1;">${p.emoji}</span>
+    </div>
+    <div class="modal-info">
+      <h2>${p.name}</h2>
+      <div class="modal-price">₹${p.price}</div>
+      <p class="modal-desc">${p.longDesc}</p>
+      <div class="modal-specs">
+        <div class="modal-spec"><label>Weight</label><span>${p.weight}</span></div>
+        <div class="modal-spec"><label>Shelf Life</label><span>${p.shelf}</span></div>
+        <div class="modal-spec"><label>Type</label><span>Vegetarian 🟢</span></div>
+        <div class="modal-spec"><label>Origin</label><span>Indore, M.P.</span></div>
+      </div>
+      <div class="modal-ingredients">
+        <h4>Ingredients</h4>
+        <p>${p.ingredients}</p>
+      </div>
+      <div class="modal-serving">
+        <h4>🍽️ Serving Suggestion</h4>
+        <p>${p.serving}</p>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-buy-full" onclick="buyNow(${p.id})">🛒 Add to Cart — ₹${p.price}</button>
+        <a class="btn-wa" href="https://wa.me/919999999999?text=Hello! I want to order *${encodeURIComponent(p.name)}* (₹${p.price}). Please confirm availability." target="_blank">💬 Order via WhatsApp</a>
+      </div>
+    </div>
+  `;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        document.getElementById('productModal').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document
+        .getElementById('productModal')
+        .addEventListener('click', function (e) {
+          if (e.target === this) closeModal();
+        });
+
+      // ── CART ──
+      function showNotif(msg) {
+        const n = document.getElementById('cartNotif');
+        n.textContent = msg;
+        n.classList.add('show');
+        setTimeout(() => n.classList.remove('show'), 2500);
+      }
+      function addToCartDirect(id) {
+        const p = products.find((x) => x.id === id);
+        const existing = cart.find((x) => x.id === id);
+        if (existing) existing.qty++;
+        else cart.push({ ...p, qty: 1 });
+        renderCart();
+        showNotif('✅ ' + p.name + ' added!');
+      }
+      function buyNow(id) {
+        addToCartDirect(id);
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+        closeModal();
+      }
+      function renderCart() {
+        const el = document.getElementById('cartItems');
+        const empty = document.getElementById('cartEmpty');
+        const summary = document.getElementById('cartSummary');
+        if (cart.length === 0) {
+          el.innerHTML =
+            '<div class="cart-empty" id="cartEmpty">Your cart is empty.<br/>Add items to get started!</div>';
+          summary.style.display = 'none';
+          return;
+        }
+        el.innerHTML = cart
+          .map(
+            (item) => `
+    <div class="cart-item">
+      <div><div class="cart-item-name">${item.emoji} ${item.name}</div>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+          <span class="qty-val">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+        </div>
+      </div>
+      <div class="cart-item-price">₹${item.price * item.qty}</div>
+    </div>
+  `,
+          )
+          .join('');
+        const sub = cart.reduce((a, b) => a + b.price * b.qty, 0);
+        document.getElementById('cartSubtotal').textContent = '₹' + sub;
+        document.getElementById('cartTotal').textContent = '₹' + (sub + 50);
+        summary.style.display = 'block';
+      }
+      function changeQty(id, delta) {
+        const idx = cart.findIndex((x) => x.id === id);
+        if (idx === -1) return;
+        cart[idx].qty += delta;
+        if (cart[idx].qty <= 0) cart.splice(idx, 1);
+        renderCart();
+      }
+      function addToCart() {
+        const prod = document.getElementById('orderProduct').value;
+        const qty = parseInt(document.getElementById('orderQty').value) || 1;
+        if (!prod) {
+          alert('Please select a product first.');
+          return;
+        }
+        const match = prod.match(/^(.+?) - ₹(\d+)/);
+        if (match) {
+          const name = match[1],
+            price = parseInt(match[2]);
+          const ex = cart.find((x) => x.name === name);
+          if (ex) ex.qty += qty;
+          else cart.push({ id: Date.now(), name, price, qty, emoji: '🥟' });
+          renderCart();
+          showNotif('✅ ' + name + ' added!');
+        }
+      }
+      function submitOrderWA() {
+        const name = document.getElementById('orderName').value;
+        const mobile = document.getElementById('orderMobile').value;
+        const address = document.getElementById('orderAddress').value;
+        const city = document.getElementById('orderCity').value;
+        const pin = document.getElementById('orderPin').value;
+        const product = document.getElementById('orderProduct').value;
+        const qty = document.getElementById('orderQty').value;
+        const notes = document.getElementById('orderNotes').value;
+        if (!name || !mobile || !address || !product) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+        const msg = `🥟 *New Order – Maheswari Kachori*\n\n👤 *Name:* ${name}\n📱 *Mobile:* ${mobile}\n📦 *Product:* ${product}\n🔢 *Qty:* ${qty}\n📍 *Address:* ${address}, ${city} – ${pin}\n📝 *Notes:* ${notes || 'None'}\n\nPlease confirm my order. Thank you!`;
+        window.open(
+          'https://wa.me/919999999999?text=' + encodeURIComponent(msg),
+          '_blank',
+        );
+      }
+      function checkoutWA() {
+        if (cart.length === 0) {
+          alert('Your cart is empty!');
+          return;
+        }
+        const items = cart
+          .map((x) => `• ${x.name} x${x.qty} = ₹${x.price * x.qty}`)
+          .join('\n');
+        const total = cart.reduce((a, b) => a + b.price * b.qty, 0) + 50;
+        const msg = `🥟 *Checkout – Maheswari Kachori*\n\n${items}\n\n🚚 Delivery: ₹50\n💰 *Total: ₹${total}*\n\nPlease confirm and share payment details. Thank you!`;
+        window.open(
+          'https://wa.me/919999999999?text=' + encodeURIComponent(msg),
+          '_blank',
+        );
+      }
+
+      // ── FAQ ──
+      function toggleFAQ(btn) {
+        const answer = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+        document.querySelectorAll('.faq-q.open').forEach((q) => {
+          q.classList.remove('open');
+          q.nextElementSibling.classList.remove('open');
+        });
+        if (!isOpen) {
+          btn.classList.add('open');
+          answer.classList.add('open');
+        }
+      }
+
+      // ── NAV ──
+      window.addEventListener('scroll', () => {
+        document
+          .getElementById('mainNav')
+          .classList.toggle('scrolled', window.scrollY > 50);
+      });
+      document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.toggle('open');
+      });
+      function closeMobileMenu() {
+        document.getElementById('mobileMenu').classList.remove('open');
+      }
+
+      // ── SCROLL REVEAL ──
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll('.reveal')
+        .forEach((el) => observer.observe(el));
+
+      // ── INIT ──
+      renderProducts();
+      // Re-observe dynamically added cards after render
+      setTimeout(() => {
+        document
+          .querySelectorAll('.reveal')
+          .forEach((el) => observer.observe(el));
+      }, 100);
+    </script>
+  </body>
+</html>
