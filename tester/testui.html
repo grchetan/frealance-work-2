@@ -1,0 +1,1047 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Maheswari Kachori - Authentic Taste of Traditional Indian Kachori and Spices. Order fresh and hygienic snacks online."
+    />
+    <title>Maheswari Kachori | Authentic Traditional Taste</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* CSS Variables for Premium Indian Food Theme */
+      :root {
+        --primary-red: #c8102e;
+        --primary-hover: #a00d24;
+        --warm-orange: #e65100;
+        --golden-yellow: #ffb300;
+        --cream-bg: #fdfbf7;
+        --dark-brown: #3e2723;
+        --light-text: #795548;
+        --white: #ffffff;
+        --shadow: 0 10px 30px rgba(62, 39, 35, 0.08);
+        --transition: all 0.3s ease;
+      }
+
+      /* Reset & Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--cream-bg);
+        color: var(--dark-brown);
+        line-height: 1.6;
+      }
+      h1,
+      h2,
+      h3,
+      .brand-font {
+        font-family: 'Playfair Display', serif;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      /* Typography & Utilities */
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: var(--primary-red);
+        margin-bottom: 1rem;
+      }
+      .section-subtitle {
+        text-align: center;
+        color: var(--warm-orange);
+        font-weight: 500;
+        margin-bottom: 3rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 28px;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        text-align: center;
+      }
+      .btn-primary {
+        background: var(--primary-red);
+        color: var(--white);
+        box-shadow: 0 4px 15px rgba(200, 16, 46, 0.3);
+      }
+      .btn-primary:hover {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        border: 2px solid var(--primary-red);
+        color: var(--primary-red);
+        background: transparent;
+      }
+      .btn-outline:hover {
+        background: var(--primary-red);
+        color: var(--white);
+      }
+      .btn-whatsapp {
+        background: #25d366;
+        color: var(--white);
+      }
+      .btn-whatsapp:hover {
+        background: #1ebe5d;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      }
+
+      /* Navbar */
+      nav {
+        background: var(--white);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 15px 0;
+      }
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-red);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+      .nav-links a {
+        font-weight: 500;
+        transition: var(--transition);
+      }
+      .nav-links a:hover {
+        color: var(--warm-orange);
+      }
+      .cart-icon {
+        position: relative;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+      .cart-count {
+        position: absolute;
+        top: -10px;
+        right: -15px;
+        background: var(--warm-orange);
+        color: var(--white);
+        font-size: 0.8rem;
+        padding: 2px 6px;
+        border-radius: 50%;
+        font-weight: bold;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        background:
+          linear-gradient(rgba(253, 251, 247, 0.9), rgba(253, 251, 247, 0.8)),
+          url('https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1920&q=80')
+            center/cover;
+      }
+      .hero-content {
+        max-width: 600px;
+      }
+      .hero h1 {
+        font-size: 3.5rem;
+        color: var(--primary-red);
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+      .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        color: var(--dark-brown);
+      }
+      .hero-btns {
+        display: flex;
+        gap: 15px;
+      }
+
+      /* Trust Badges */
+      .trust-section {
+        padding: 60px 0;
+        background: var(--white);
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        text-align: center;
+      }
+      .trust-item i {
+        font-size: 2.5rem;
+        color: var(--golden-yellow);
+        margin-bottom: 15px;
+      }
+      .trust-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      /* About Section */
+      .about {
+        padding: 80px 0;
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        flex-wrap: wrap;
+      }
+      .about-img {
+        flex: 1;
+        min-width: 300px;
+        position: relative;
+      }
+      .about-img::before {
+        content: '';
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        width: 100%;
+        height: 100%;
+        border: 3px solid var(--golden-yellow);
+        border-radius: 8px;
+        z-index: -1;
+      }
+      .about-content {
+        flex: 1;
+        min-width: 300px;
+      }
+      .about-content h2 {
+        font-size: 2.5rem;
+        color: var(--primary-red);
+        margin-bottom: 20px;
+      }
+
+      /* Products Section */
+      .products {
+        padding: 80px 0;
+        background: var(--white);
+      }
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+      }
+      .product-card {
+        background: var(--cream-bg);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+      }
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(62, 39, 35, 0.12);
+      }
+      .product-img {
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+      }
+      .product-info {
+        padding: 25px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .product-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      .product-desc {
+        color: var(--light-text);
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+        flex-grow: 1;
+      }
+      .product-price {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--primary-red);
+        margin-bottom: 20px;
+      }
+      .product-actions {
+        display: flex;
+        gap: 10px;
+      }
+      .product-actions .btn {
+        flex: 1;
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+
+      /* Order System & Cart */
+      .order-section {
+        padding: 80px 0;
+      }
+      .order-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+      }
+      .order-form-card,
+      .cart-summary-card {
+        background: var(--white);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: var(--shadow);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-family: inherit;
+        outline: none;
+        transition: var(--transition);
+      }
+      .form-group input:focus {
+        border-color: var(--warm-orange);
+      }
+
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+      }
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 2px solid var(--primary-red);
+      }
+
+      /* Footer & Contact */
+      footer {
+        background: var(--dark-brown);
+        color: var(--white);
+        padding: 80px 0 20px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+      .footer-col h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: var(--golden-yellow);
+      }
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+      .footer-links a:hover {
+        color: var(--golden-yellow);
+      }
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      .social-icons a {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+      .social-icons a:hover {
+        background: var(--primary-red);
+        transform: translateY(-3px);
+      }
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+        color: #ccc;
+      }
+
+      /* Modal for Product Details */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .modal-content {
+        background: var(--white);
+        width: 100%;
+        max-width: 800px;
+        border-radius: 15px;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+        animation: modalFadeIn 0.3s ease;
+      }
+      @keyframes modalFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark-brown);
+        z-index: 10;
+        background: white;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+      .modal-img {
+        flex: 1;
+        min-width: 300px;
+        background-size: cover;
+        background-position: center;
+        min-height: 300px;
+      }
+      .modal-body {
+        flex: 1;
+        min-width: 300px;
+        padding: 40px;
+      }
+      .modal-body h2 {
+        font-family: 'Playfair Display', serif;
+        color: var(--primary-red);
+        margin-bottom: 10px;
+      }
+      .modal-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--warm-orange);
+        margin-bottom: 20px;
+      }
+      .modal-specs {
+        margin: 20px 0;
+        background: var(--cream-bg);
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 0.9rem;
+      }
+      .modal-specs p {
+        margin-bottom: 5px;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .nav-links {
+          display: none;
+        } /* Add hamburger menu for real prod */
+        .order-container {
+          grid-template-columns: 1fr;
+        }
+        .about {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container nav-container">
+        <div class="logo">
+          <i
+            class="fa-solid fa-fire-burner"
+            style="color: var(--warm-orange)"
+          ></i>
+          Maheswari Kachori
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#products">Shop</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="cart-icon" onclick="scrollToOrder()">
+          <i class="fa-solid fa-basket-shopping fa-lg"></i>
+          <span class="cart-count" id="cart-badge">0</span>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Authentic Taste of Traditional Kachori</h1>
+          <p>
+            Experience the rich, spicy, and crispy heritage of India in every
+            bite. Prepared with generations-old secret spices, directly to your
+            doorstep.
+          </p>
+          <div class="hero-btns">
+            <a href="#products" class="btn btn-primary">View Products</a>
+            <a
+              href="#order"
+              class="btn btn-outline"
+              style="border-color: var(--dark-brown); color: var(--dark-brown)"
+              >Order Now</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="trust-section" id="trust">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <i class="fa-solid fa-leaf"></i>
+          <h3>Fresh Taste</h3>
+          <p style="font-size: 0.9rem; color: var(--light-text)">
+            Made fresh daily
+          </p>
+        </div>
+        <div class="trust-item">
+          <i class="fa-solid fa-hands-bubbles"></i>
+          <h3>Hygienic Preparation</h3>
+          <p style="font-size: 0.9rem; color: var(--light-text)">
+            100% clean environment
+          </p>
+        </div>
+        <div class="trust-item">
+          <i class="fa-solid fa-mortar-pestle"></i>
+          <h3>Quality Ingredients</h3>
+          <p style="font-size: 0.9rem; color: var(--light-text)">
+            Premium whole spices
+          </p>
+        </div>
+        <div class="trust-item">
+          <i class="fa-solid fa-truck-fast"></i>
+          <h3>Fast Delivery</h3>
+          <p style="font-size: 0.9rem; color: var(--light-text)">
+            Express shipping pan-India
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container about" id="about">
+      <div class="about-img">
+        <img
+          src="https://images.unsplash.com/photo-1596797038530-2c107229654b?auto=format&fit=crop&w=800&q=80"
+          alt="Indian Spices"
+        />
+      </div>
+      <div class="about-content">
+        <h4
+          class="section-subtitle"
+          style="text-align: left; margin-bottom: 10px"
+        >
+          Our Heritage
+        </h4>
+        <h2>The Secret is in the Spices</h2>
+        <p style="margin-bottom: 20px">
+          For over three decades, Maheswari Kachori has been synonymous with the
+          true essence of Indian street food. We started in a small traditional
+          kitchen, roasting and grinding our own masalas to create the perfect
+          balance of heat, tang, and crunch.
+        </p>
+        <p style="margin-bottom: 30px">
+          Today, we bring that exact same nostalgic flavor to your home,
+          ensuring every kachori is stuffed with our signature lentil mix and
+          fried to golden perfection.
+        </p>
+        <a href="#products" class="btn btn-primary">Taste the Tradition</a>
+      </div>
+    </section>
+
+    <section class="products" id="products">
+      <div class="container">
+        <h2 class="section-title">Our Best Sellers</h2>
+        <p class="section-subtitle">Handcrafted with Love & Spices</p>
+
+        <div class="product-grid" id="product-grid"></div>
+      </div>
+    </section>
+
+    <section class="order-section" id="order">
+      <div class="container">
+        <h2 class="section-title">Checkout & Order</h2>
+        <p class="section-subtitle">Secure your delicious package</p>
+
+        <div class="order-container">
+          <div class="cart-summary-card">
+            <h3
+              style="
+                margin-bottom: 20px;
+                font-family: 'Playfair Display', serif;
+                color: var(--primary-red);
+              "
+            >
+              Your Cart
+            </h3>
+            <div id="cart-items-container">
+              <p style="color: #888; font-style: italic">
+                Your cart is currently empty. Add some delicious items!
+              </p>
+            </div>
+            <div class="cart-total">
+              <span>Total:</span>
+              <span id="cart-total-price">₹0</span>
+            </div>
+          </div>
+
+          <div class="order-form-card">
+            <h3
+              style="
+                margin-bottom: 20px;
+                font-family: 'Playfair Display', serif;
+              "
+            >
+              Delivery Details
+            </h3>
+            <form id="checkout-form">
+              <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="name" placeholder="John Doe" required />
+              </div>
+              <div class="form-group">
+                <label>Mobile Number (WhatsApp)</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="+91 98765 43210"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Full Delivery Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  placeholder="House No, Street, Landmark"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>City & Pincode</label>
+                <input
+                  type="text"
+                  id="city"
+                  placeholder="Mumbai, 400001"
+                  required
+                />
+              </div>
+              <button
+                type="button"
+                class="btn btn-whatsapp"
+                style="width: 100%; font-size: 1.1rem; margin-top: 10px"
+                onclick="placeOrderWhatsApp()"
+              >
+                <i class="fa-brands fa-whatsapp"></i> Order via WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4 class="brand-font">Maheswari Kachori</h4>
+            <p style="color: #ccc; margin-bottom: 20px">
+              Bringing the authentic, crispy, and spicy heritage of Indian
+              street food straight to your dining table.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">Brand Story</a></li>
+              <li><a href="#products">Shop Products</a></li>
+              <li><a href="#order">Track Order</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact Us</h4>
+            <ul class="footer-links" style="color: #ccc">
+              <li>
+                <i
+                  class="fa-solid fa-phone"
+                  style="margin-right: 10px; color: var(--golden-yellow)"
+                ></i>
+                +91 98765 43210
+              </li>
+              <li>
+                <i
+                  class="fa-solid fa-envelope"
+                  style="margin-right: 10px; color: var(--golden-yellow)"
+                ></i>
+                hello@maheswarikachori.in
+              </li>
+              <li>
+                <i
+                  class="fa-solid fa-location-dot"
+                  style="margin-right: 10px; color: var(--golden-yellow)"
+                ></i>
+                123 Spice Market, Heritage City, India
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="copyright">
+          &copy; 2026 Maheswari Kachori. All Rights Reserved. Designed for
+          premium taste.
+        </div>
+      </div>
+    </footer>
+
+    <div class="modal" id="productModal">
+      <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-img" id="modal-img"></div>
+        <div class="modal-body">
+          <h2 id="modal-title">Product Name</h2>
+          <div class="modal-price" id="modal-price">₹0</div>
+          <p id="modal-desc">Detailed product description goes here.</p>
+
+          <div class="modal-specs">
+            <p>
+              <strong>Ingredients:</strong> <span id="modal-ingredients"></span>
+            </p>
+            <p><strong>Weight/Pack:</strong> <span id="modal-weight"></span></p>
+            <p><strong>Shelf Life:</strong> <span id="modal-shelf"></span></p>
+            <p>
+              <strong>Serving Suggestion:</strong>
+              <span id="modal-serving"></span>
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 15px; margin-top: 30px">
+            <button class="btn btn-primary" id="modal-add-cart" style="flex: 1">
+              Add to Cart
+            </button>
+            <button class="btn btn-whatsapp" id="modal-buy-now" style="flex: 1">
+              <i class="fa-brands fa-whatsapp"></i> Buy Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Product Data
+      const products = [
+        {
+          id: 1,
+          name: 'Classic Premium Kachori',
+          shortDesc: 'Crispy outer layer stuffed with spicy lentil mix.',
+          fullDesc:
+            'Our flagship product. Handcrafted daily using stone-ground spices and premium flour. Fried to a perfect golden crisp, these kachoris offer a burst of traditional Indian flavors in every bite.',
+          price: 250,
+          ingredients:
+            'Refined Wheat Flour, Moong Dal, Gram Flour, Fennel, Asafoetida, Premium Spices, Edible Oil.',
+          weight: 'Pack of 10 Pieces (Approx 500g)',
+          shelfLife: '15 Days from manufacturing',
+          serving:
+            'Serve hot with sweet tamarind chutney and green mint chutney.',
+          img: 'https://images.unsplash.com/photo-1626074964464-f617300c1445?auto=format&fit=crop&w=600&q=80', // Placeholder for Fried Indian Food
+        },
+        {
+          id: 2,
+          name: 'Signature Kachori Masala',
+          shortDesc: 'Our secret spice blend to make perfect fillings at home.',
+          fullDesc:
+            'Want to recreate the Maheswari magic in your own kitchen? This secret blend of 14 roasted spices is exactly what we use in our kitchens. Perfect for Kachori fillings, parathas, or samosas.',
+          price: 150,
+          ingredients:
+            'Coriander Seeds, Fennel, Cumin, Dry Mango Powder, Black Salt, Red Chilli, Garam Masala, Asafoetida.',
+          weight: '250g Jar',
+          shelfLife: '6 Months',
+          serving:
+            'Mix 2 tablespoons with 1 cup of soaked and crushed moong dal for filling.',
+          img: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=600&q=80', // Placeholder for Spices
+        },
+        {
+          id: 3,
+          name: 'Ultimate Festive Combo',
+          shortDesc: 'Best of both worlds. 20 Kachoris + 500g Masala.',
+          fullDesc:
+            'The perfect package for family gatherings or gifting. Get our ready-to-eat premium kachoris along with a large jar of our signature masala to keep the tradition going.',
+          price: 600,
+          ingredients: 'See individual packs.',
+          weight: '20 Pieces + 500g Masala',
+          shelfLife: 'Kachori: 15 Days | Masala: 6 Months',
+          serving: 'Share with family alongside hot masala chai.',
+          img: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=600&q=80', // Placeholder for Combo
+        },
+      ];
+
+      // Cart State
+      let cart = [];
+
+      // Initialize Products
+      function renderProducts() {
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = products
+          .map(
+            (p) => `
+                <div class="product-card">
+                    <img src="${p.img}" alt="${p.name}" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">${p.name}</h3>
+                        <p class="product-desc">${p.shortDesc}</p>
+                        <div class="product-price">₹${p.price}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="openModal(${p.id})">Details</button>
+                            <button class="btn btn-primary" onclick="addToCart(${p.id})">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            `,
+          )
+          .join('');
+      }
+
+      // Cart Functions
+      function addToCart(productId) {
+        const product = products.find((p) => p.id === productId);
+        const existing = cart.find((item) => item.id === productId);
+
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ ...product, qty: 1 });
+        }
+        updateCartUI();
+
+        // Small visual feedback
+        const btn = event.currentTarget;
+        if (btn) {
+          const originalText = btn.innerText;
+          btn.innerText = 'Added!';
+          setTimeout(() => (btn.innerText = originalText), 1000);
+        }
+      }
+
+      function removeFromCart(productId) {
+        cart = cart.filter((item) => item.id !== productId);
+        updateCartUI();
+      }
+
+      function updateCartUI() {
+        // Update badge
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        document.getElementById('cart-badge').innerText = totalItems;
+
+        // Update Summary
+        const container = document.getElementById('cart-items-container');
+        const totalEl = document.getElementById('cart-total-price');
+
+        if (cart.length === 0) {
+          container.innerHTML =
+            '<p style="color: #888; font-style: italic;">Your cart is currently empty.</p>';
+          totalEl.innerText = '₹0';
+          return;
+        }
+
+        let html = '';
+        let total = 0;
+
+        cart.forEach((item) => {
+          const itemTotal = item.price * item.qty;
+          total += itemTotal;
+          html += `
+                    <div class="cart-item">
+                        <div>
+                            <strong style="color: var(--dark-brown);">${item.name}</strong>
+                            <div style="font-size: 0.85rem; color: #666;">₹${item.price} x ${item.qty}</div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <span style="font-weight: 600;">₹${itemTotal}</span>
+                            <i class="fa-solid fa-trash" style="color: var(--primary-red); cursor: pointer;" onclick="removeFromCart(${item.id})"></i>
+                        </div>
+                    </div>
+                `;
+        });
+
+        container.innerHTML = html;
+        totalEl.innerText = `₹${total}`;
+      }
+
+      function scrollToOrder() {
+        document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // Modal Functions
+      const modal = document.getElementById('productModal');
+
+      function openModal(productId) {
+        const p = products.find((item) => item.id === productId);
+        document.getElementById('modal-img').style.backgroundImage =
+          `url(${p.img})`;
+        document.getElementById('modal-title').innerText = p.name;
+        document.getElementById('modal-price').innerText = `₹${p.price}`;
+        document.getElementById('modal-desc').innerText = p.fullDesc;
+        document.getElementById('modal-ingredients').innerText = p.ingredients;
+        document.getElementById('modal-weight').innerText = p.weight;
+        document.getElementById('modal-shelf').innerText = p.shelfLife;
+        document.getElementById('modal-serving').innerText = p.serving;
+
+        const addBtn = document.getElementById('modal-add-cart');
+        addBtn.onclick = () => {
+          addToCart(p.id);
+          closeModal();
+        };
+
+        const buyBtn = document.getElementById('modal-buy-now');
+        buyBtn.onclick = () => {
+          addToCart(p.id);
+          closeModal();
+          scrollToOrder();
+        };
+
+        modal.style.display = 'flex';
+      }
+
+      function closeModal() {
+        modal.style.display = 'none';
+      }
+
+      // Close modal if clicked outside
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          closeModal();
+        }
+      };
+
+      // WhatsApp Checkout Logic
+      function placeOrderWhatsApp() {
+        if (cart.length === 0) {
+          alert('Please add at least one item to your cart before ordering.');
+          return;
+        }
+
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+        const city = document.getElementById('city').value;
+
+        if (!name || !phone || !address || !city) {
+          alert('Please fill in all delivery details.');
+          return;
+        }
+
+        let orderText = `*New Order: Maheswari Kachori*%0A%0A`;
+        orderText += `*Customer:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}, ${city}%0A%0A*Order Details:*%0A`;
+
+        let total = 0;
+        cart.forEach((item) => {
+          orderText += `- ${item.name} (x${item.qty}) = ₹${item.price * item.qty}%0A`;
+          total += item.price * item.qty;
+        });
+
+        orderText += `%0A*Total Amount: ₹${total}*%0A%0APlease confirm my order!`;
+
+        // Replace with actual business WhatsApp number
+        const whatsappNumber = '919876543210';
+        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${orderText}`;
+
+        window.open(whatsappURL, '_blank');
+      }
+
+      // Init
+      renderProducts();
+    </script>
+  </body>
+</html>
