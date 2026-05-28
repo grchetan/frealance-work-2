@@ -70,27 +70,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onCartToggle }) => {
           >
             Our Story
           </span>
+
           <span 
-            className="nav-link"
-            onClick={() => {
-              navigateTo('home');
-              setTimeout(() => {
-                const el = document.getElementById('heritage-story');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }}
-          >
-            Bulk Orders
-          </span>
-          <span 
-            className="nav-link"
-            onClick={() => {
-              navigateTo('home');
-              setTimeout(() => {
-                const el = document.getElementById('testimonials');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }}
+            className={`nav-link ${activeView === 'reviews' ? 'nav-link-active' : ''}`}
+            onClick={() => handleNavClick('reviews')}
           >
             Reviews
           </span>
@@ -232,6 +215,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onCartToggle }) => {
             >
               <Compass size={18} style={{ color: activeView === 'our-story' ? 'var(--color-primary)' : 'var(--text-muted)' }} />
               <span>Our Story</span>
+            </div>
+
+            <div 
+              className={`mobile-nav-link ${activeView === 'reviews' ? 'active' : ''}`}
+              onClick={() => handleNavClick('reviews')}
+            >
+              <Compass size={18} style={{ color: activeView === 'reviews' ? 'var(--color-primary)' : 'var(--text-muted)' }} />
+              <span>Reviews</span>
             </div>
 
             <hr style={{ border: 'none', borderTop: '1px solid var(--border-light)', margin: '12px 0' }} />

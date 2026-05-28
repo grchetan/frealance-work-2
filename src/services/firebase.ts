@@ -1,9 +1,42 @@
 // Hybrid Firebase Authentication Service & Simulator Broker
-import { User } from '../types';
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { 
+  getAuth, 
+  signInWithEmailAndPassword as fbSignIn, 
+  createUserWithEmailAndPassword as fbCreateUser, 
+  signOut as fbSignOut, 
+  onAuthStateChanged as fbOnAuthStateChanged,
+  updateProfile as fbUpdateProfile
+} from 'firebase/auth';
 
-// Read optional Firebase configuration from environmental variables
+// Read Firebase configuration from environmental variables
 const FIREBASE_API_KEY = import.meta.env?.VITE_FIREBASE_API_KEY || '';
 const FIREBASE_AUTH_DOMAIN = import.meta.env?.VITE_FIREBASE_AUTH_DOMAIN || '';
+const FIREBASE_PROJECT_ID = import.meta.env?.VITE_FIREBASE_PROJECT_ID || '';
+const FIREBASE_STORAGE_BUCKET = import.meta.env?.VITE_FIREBASE_STORAGE_BUCKET || '';
+const FIREBASE_MESSAGING_SENDER_ID = import.meta.env?.VITE_FIREBASE_MESSAGING_SENDER_ID || '';
+const FIREBASE_APP_ID = import.meta.env?.VITE_FIREBASE_APP_ID || '';
+
+export const isFirebaseConfigured = !!(FIREBASE_API_KEY && FIREBASE_AUTH_DOMAIN);
+
+let firebaseAuthInstance: any = null;
+
+if (isFirebaseConfigured) {
+  try {
+    const firebaseConfig = {
+      apiKey: FIREBASE_API_KEY,
+      authDomain: FIREBASE_AUTH_DOMAIN,
+      projectId: FIREBASE_PROJECT_ID,
+      storageBucket: FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+      appId: FIREBASE_APP_ID
+    };
+    const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+    firebaseAuthInstance = getAuth(app);
+  } catch (err) {
+    console.error('Firebase Auth initialization failed:', err);
+  }
+}
 
 export interface FirebaseUser {
   uid: string;
@@ -46,7 +79,6 @@ class FirebaseAuthSimulator {
   private listeners: ((user: any | null) => void)[] = [];
 
   constructor() {
-    // Monitor session boot state and automatically trigger auth state change triggers
     setTimeout(() => {
       this.triggerStateChange();
     }, 100);
@@ -59,14 +91,13 @@ class FirebaseAuthSimulator {
 
   onAuthStateChanged(callback: (user: any | null) => void) {
     this.listeners.push(callback);
-    // Initial call
     callback(this.currentUser);
     return () => {
       this.listeners = this.listeners.filter(l => l !== callback);
     };
   }
 
-  private triggerStateChange() {
+  triggerStateChange() {
     const user = this.currentUser;
     this.listeners.forEach(callback => callback(user));
   }
@@ -75,7 +106,7 @@ class FirebaseAuthSimulator {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async createUserWithEmailAndPassword(email: string, signupData: { displayName: string; phone: string }) {
+  async createUserWithEmailAndPassword(email: string, passwordSecured: string, signupData: { displayName: string; phone: string }) {
     await this.delay(500);
     const users: FirebaseUser[] = JSON.parse(localStorage.getItem('fb_users') || '[]');
 
@@ -96,7 +127,7 @@ class FirebaseAuthSimulator {
     localStorage.setItem('fb_users', JSON.stringify(users));
     localStorage.setItem('fb_session_user', JSON.stringify(newUser));
 
-    // Seed into Supabase users table as well to keep relational simulation cohesive!
+    // Seed into Supabase users table as well to keep relational simulation cohesive
     const sbUsers = JSON.parse(localStorage.getItem('sb_users') || '[]');
     if (!sbUsers.find((u: any) => u.email === email)) {
       sbUsers.push({
@@ -114,13 +145,21 @@ class FirebaseAuthSimulator {
     return { user: newUser };
   }
 
-  async signInWithEmailAndPassword(email: string) {
+  async signInWithEmailAndPassword(email: string, passwordSecured: string) {
     await this.delay(500);
     const users: FirebaseUser[] = JSON.parse(localStorage.getItem('fb_users') || '[]');
     const matched = users.find(u => u.email.toLowerCase() === email.toLowerCase());
 
     if (!matched) {
       throw new Error('Authentication failed. No user found matching these credentials.');
+    }
+
+    // Direct password checking simulation for demonstration
+    if (email === 'admin@mahesvari.com' && passwordSecured !== 'admin123') {
+      throw new Error('Invalid administrator credential password.');
+    }
+    if (email === 'customer@mahesvari.com' && passwordSecured !== 'customer123') {
+      throw new Error('Invalid account password credentials.');
     }
 
     localStorage.setItem('fb_session_user', JSON.stringify(matched));
@@ -136,6 +175,103 @@ class FirebaseAuthSimulator {
   }
 }
 
+const authSimulator = new FirebaseAuthSimulator();
+
+// --- 6. SECURE HYBRID AUTHENTICATION AGENT ROUTER ---
+class FirebaseAuthService {
+  onAuthStateChanged(callback: (user: any | null) => void) {
+    if (isFirebaseConfigured && firebaseAuthInstance) {
+      return fbOnAuthStateChanged(firebaseAuthInstance, async (fbUser) => {
+        if (fbUser) {
+          // Map Firebase user fields to application model
+          callback({
+            uid: fbUser.uid,
+            email: fbUser.email || '',
+            displayName: fbUser.displayName || '',
+            phone: fbUser.phoneNumber || '',
+            // Fallback rules: standard admin check or user role sync
+            role: fbUser.email === 'admin@mahesvari.com' ? 'admin' : 'customer',
+            created_at: fbUser.metadata.creationTime || new Date().toISOString()
+          });
+        } else {
+          callback(null);
+        }
+      });
+    } else {
+      return authSimulator.onAuthStateChanged(callback);
+    }
+  }
+
+  get currentUser(): any {
+    if (isFirebaseConfigured && firebaseAuthInstance) {
+      const fbUser = firebaseAuthInstance.currentUser;
+      if (!fbUser) return null;
+      return {
+        uid: fbUser.uid,
+        email: fbUser.email || '',
+        displayName: fbUser.displayName || '',
+        phone: fbUser.phoneNumber || '',
+        role: fbUser.email === 'admin@mahesvari.com' ? 'admin' : 'customer',
+        created_at: fbUser.metadata.creationTime || new Date().toISOString()
+      };
+    } else {
+      return authSimulator.currentUser;
+    }
+  }
+
+  async createUserWithEmailAndPassword(email: string, passwordSecured: string, signupData: { displayName: string; phone: string }) {
+    if (isFirebaseConfigured && firebaseAuthInstance) {
+      const userCredential = await fbCreateUser(firebaseAuthInstance, email, passwordSecured);
+      const fbUser = userCredential.user;
+      
+      // Update basic profile details
+      await fbUpdateProfile(fbUser, {
+        displayName: signupData.displayName
+      });
+
+      return {
+        user: {
+          uid: fbUser.uid,
+          email: fbUser.email || '',
+          displayName: signupData.displayName,
+          phone: signupData.phone || '',
+          role: 'customer' as const,
+          created_at: fbUser.metadata.creationTime || new Date().toISOString()
+        }
+      };
+    } else {
+      return authSimulator.createUserWithEmailAndPassword(email, passwordSecured, signupData);
+    }
+  }
+
+  async signInWithEmailAndPassword(email: string, passwordSecured: string) {
+    if (isFirebaseConfigured && firebaseAuthInstance) {
+      const userCredential = await fbSignIn(firebaseAuthInstance, email, passwordSecured);
+      const fbUser = userCredential.user;
+      return {
+        user: {
+          uid: fbUser.uid,
+          email: fbUser.email || '',
+          displayName: fbUser.displayName || '',
+          phone: fbUser.phoneNumber || '',
+          role: fbUser.email === 'admin@mahesvari.com' ? 'admin' : 'customer',
+          created_at: fbUser.metadata.creationTime || new Date().toISOString()
+        }
+      };
+    } else {
+      return authSimulator.signInWithEmailAndPassword(email, passwordSecured);
+    }
+  }
+
+  async signOut() {
+    if (isFirebaseConfigured && firebaseAuthInstance) {
+      await fbSignOut(firebaseAuthInstance);
+      return { error: null };
+    } else {
+      return authSimulator.signOut();
+    }
+  }
+}
+
 // Export Auth Service broker
-// If Firebase Web SDK keys are supplied, you can swap this class instance for standard Firebase Auth SDK calls!
-export const auth = new FirebaseAuthSimulator();
+export const auth = new FirebaseAuthService();

@@ -54,7 +54,7 @@ export interface Order {
   discount_amount: number;
   tax_amount: number;
   shipping_amount: number;
-  status: 'pending' | 'preparing' | 'dispatched' | 'delivered' | 'cancelled';
+  status: 'pending' | 'confirmed' | 'preparing' | 'packed' | 'out_for_delivery' | 'delivered' | 'cancelled' | 'refunded';
   payment_status: 'pending' | 'paid' | 'failed' | 'refunded';
   payment_method: 'UPI' | 'CARD' | 'COD';
   transaction_id?: string;

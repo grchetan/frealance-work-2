@@ -8,7 +8,7 @@ interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
-  const { products, fetchProductsList, navigateTo } = useApp();
+  const { products, fetchProductsList, navigateTo, activeBanners } = useApp();
   const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
@@ -23,33 +23,36 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
   const bestsellerProducts = products.filter(p => p.is_featured).slice(0, 3);
 
   const handleCategoryClick = (category: string) => {
-    // Navigate to Shop and trigger filter logic
     navigateTo('shop');
-    // Save category filter in session so Shop reads it on mount
     sessionStorage.setItem('preferred_category', category);
   };
 
   const categoriesList = [
-    { label: 'Artisan Kachoris', value: 'Kachoris', desc: 'Crispy, hot puffed pastries ground from heritage secret spices.', icon: <Award size={24} /> },
+    { label: 'Artisan Kachoris', value: 'Kachoris', desc: 'Crispy, hot puffed pastries hand-stuffed with heritage spiced fillings.', icon: <Award size={24} /> },
     { label: 'Woodfire Masalas', value: 'Masalas', desc: 'Low coal-fire roasted dry spices, hand-ground to lock in rich aromas.', icon: <Flame size={24} /> },
-    { label: 'Traditional Snacks', value: 'Snacks', desc: 'Savory namkeen bites cooked in strict pure vegetarian double-refined oil.', icon: <Leaf size={24} /> },
-    { label: 'Gourmet Combos', value: 'Combos', desc: 'Connoisseur gifting boxes with fresh kachoris, spice jars, and dipping tamarind.', icon: <Heart size={24} /> }
+    { label: 'Traditional Snacks', value: 'Snacks', desc: 'Savory Namkeen bites cooked in strict pure vegetarian double-refined oil.', icon: <Leaf size={24} /> },
+    { label: 'Gourmet Combos', value: 'Combos', desc: 'Connoisseur gifting boxes with fresh kachoris, spice jars, and dipping syrups.', icon: <Heart size={24} /> }
   ];
 
   return (
     <main style={{ position: 'relative', overflow: 'hidden', backgroundColor: 'var(--bg-body)' }}>
-      
-      {/* Floating Spices Background Layer - Luxury Vector Icons */}
-      <div className="spice-float spice-1" style={{ color: 'var(--color-success)', opacity: 0.05 }}><Leaf size={52} /></div>
-      <div className="spice-float spice-2" style={{ color: 'var(--color-secondary)', opacity: 0.05 }}><Flame size={44} /></div>
-      <div className="spice-float spice-3" style={{ color: 'var(--color-primary)', opacity: 0.05 }}><Award size={40} /></div>
-      <div className="spice-float spice-4" style={{ color: 'var(--color-success)', opacity: 0.05 }}><Sparkles size={48} /></div>
 
-      {/* Redesigned Premium Mockup Hero Section using the new Generated Background Graphic */}
-      <section className="luxury-hero-section">
+      {/* Cinematic Luxury Hero Section with Full-Width Background Image */}
+      <section className="luxury-hero-section" style={{
+        position: 'relative',
+        padding: '160px 0 120px',
+        minHeight: '88vh',
+        display: 'flex',
+        alignItems: 'center',
+        backgroundImage: 'linear-gradient(to right, rgba(5, 51, 22, 0.96) 35%, rgba(5, 51, 22, 0.8) 60%, rgba(5, 51, 22, 0.3) 100%), url("/images/luxury_hero_banner.png")',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        color: 'white',
+        borderBottom: '1px solid var(--border-light)'
+      }}>
         
         {/* Full View container for left-side texts aligning */}
-        <div className="container" style={{ position: 'relative', zIndex: 3, height: '100%', display: 'flex', alignItems: 'center' }}>
+        <div className="container hero-grid" style={{ position: 'relative', zIndex: 3, display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '60px', alignItems: 'center' }}>
           
           {/* Left Column content card block */}
           <div style={{ maxWidth: '580px', animation: 'fadeInCard 0.8s cubic-bezier(0.16, 1, 0.3, 1)' }}>
@@ -59,11 +62,11 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '6px',
-              backgroundColor: 'rgba(21, 128, 61, 0.08)',
-              border: '1px solid rgba(21, 128, 61, 0.15)',
+              backgroundColor: 'rgba(74, 222, 128, 0.12)',
+              border: '1px solid rgba(74, 222, 128, 0.25)',
               padding: '6px 14px',
               borderRadius: 'var(--radius-full)',
-              color: 'var(--color-success)',
+              color: '#4ade80',
               fontWeight: '700',
               fontFamily: 'var(--font-display)',
               fontSize: '0.72rem',
@@ -71,57 +74,57 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
               textTransform: 'uppercase',
               marginBottom: '20px'
             }}>
-              <Leaf size={12} style={{ color: 'var(--color-success)' }} />
+              <Leaf size={12} style={{ color: '#4ade80' }} />
               <span>Jhabua's Pride Since 1984</span>
             </div>
 
             {/* Slogan */}
             <h1 style={{
               fontFamily: 'var(--font-serif)',
-              fontSize: '4.5rem',
+              fontSize: '4.8rem',
               lineHeight: '1.05',
               fontWeight: '700',
               letterSpacing: '-1.5px',
-              marginBottom: '18px'
+              marginBottom: '20px'
             }}>
-              <span style={{ color: 'var(--color-primary)', display: 'block' }}>Authentic Taste.</span>
+              <span style={{ color: '#ffffff', display: 'block' }}>Authentic Taste.</span>
               <span style={{ color: 'var(--color-secondary)', display: 'block' }}>Mahesvari Kachori.</span>
             </h1>
 
             {/* Subtext */}
             <p style={{
-              fontSize: '1.02rem',
-              color: 'var(--text-muted)',
-              lineHeight: '1.6',
-              marginBottom: '30px',
-              maxWidth: '500px'
+              fontSize: '1.1rem',
+              color: 'rgba(255, 255, 255, 0.85)',
+              lineHeight: '1.65',
+              marginBottom: '32px',
+              maxWidth: '540px'
             }}>
-              Traditional recipes, handpicked ingredients and the perfect crunch - delivered fresh to your door.
+              Relish Jhabua's legendary flaky street kachoris and hand-roasted woodfire masalas cooked from heirloom spice recipes, delivered fresh to your doorstep.
             </p>
 
             {/* 2x2 Badges Row */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: '1.2fr 1fr',
-              gap: '14px',
-              marginBottom: '36px',
-              maxWidth: '485px'
+              gridTemplateColumns: '1.1fr 1fr',
+              gap: '16px',
+              marginBottom: '40px',
+              maxWidth: '500px'
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                <div className="hero-badge-icon"><Leaf size={14} /></div>
-                <span>100% Pure Ingredients</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', fontWeight: '600', color: '#ffffff' }}>
+                <div className="hero-badge-icon" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#4ade80', padding: '6px', borderRadius: '50%', display: 'flex' }}><Leaf size={14} /></div>
+                <span>100% Pure Vegetarian</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                <div className="hero-badge-icon"><Flame size={14} /></div>
-                <span>Traditional Recipes</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', fontWeight: '600', color: '#ffffff' }}>
+                <div className="hero-badge-icon" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#f59e0b', padding: '6px', borderRadius: '50%', display: 'flex' }}><Flame size={14} /></div>
+                <span>Woodfire Roasted Spices</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                <div className="hero-badge-icon"><ShieldCheck size={14} /></div>
-                <span>Hygienic Preparation</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', fontWeight: '600', color: '#ffffff' }}>
+                <div className="hero-badge-icon" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#f3f4f6', padding: '6px', borderRadius: '50%', display: 'flex' }}><Award size={14} /></div>
+                <span>FSSAI Certified Shipping</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', fontWeight: '600', color: 'var(--text-main)' }}>
-                <div className="hero-badge-icon"><Sparkles size={14} /></div>
-                <span>Fast Delivery</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', fontWeight: '600', color: '#ffffff' }}>
+                <div className="hero-badge-icon" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#4ade80', padding: '6px', borderRadius: '50%', display: 'flex' }}><ShieldCheck size={14} /></div>
+                <span>Hygienic Clean Kitchen</span>
               </div>
             </div>
 
@@ -132,37 +135,38 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
                 onClick={() => navigateTo('shop')}
                 style={{
                   borderRadius: 'var(--radius-full)',
-                  padding: '16px 36px',
-                  backgroundColor: 'var(--color-primary)',
-                  boxShadow: '0 10px 24px rgba(5, 51, 22, 0.2)',
-                  fontSize: '0.92rem',
-                  fontWeight: '700'
+                  padding: '16px 38px',
+                  backgroundColor: 'var(--color-secondary)',
+                  boxShadow: '0 10px 24px rgba(194, 80, 16, 0.3)',
+                  fontSize: '0.95rem',
+                  fontWeight: '700',
+                  border: 'none',
+                  color: 'white',
+                  cursor: 'pointer'
                 }}
               >
                 <span>Order Now</span>
                 <ArrowRight size={16} />
               </button>
               <button 
-                className="btn btn-secondary"
-                onClick={() => {
-                  const el = document.getElementById('heritage-story');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
+                className="btn"
+                onClick={() => navigateTo('our-story')}
                 style={{
                   borderRadius: 'var(--radius-full)',
                   padding: '16px 30px',
-                  border: '1px solid var(--border-light)',
-                  backgroundColor: 'white',
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
                   fontWeight: '700',
-                  color: 'var(--text-main)',
+                  color: '#ffffff',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '8px',
                   fontSize: '0.92rem',
-                  boxShadow: 'var(--shadow-sm)'
+                  boxShadow: 'var(--shadow-sm)',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
                 }}
               >
-                {/* Simulated play button */}
                 <div style={{
                   width: '20px',
                   height: '20px',
@@ -181,6 +185,49 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
 
           </div>
 
+          {/* Right Column: Premium Brand Authenticity Seal */}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', animation: 'fadeInCard 1.2s cubic-bezier(0.16, 1, 0.3, 1)' }} className="hero-image-wrapper">
+            <div style={{
+              position: 'absolute',
+              width: '320px',
+              height: '320px',
+              border: '2px dashed rgba(245, 158, 11, 0.3)',
+              borderRadius: '50%',
+              animation: 'spin-slow 30s linear infinite'
+            }}></div>
+            <div style={{
+              position: 'absolute',
+              width: '280px',
+              height: '280px',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '50%',
+            }}></div>
+            
+            {/* Rotating Seal Content */}
+            <div style={{
+              width: '220px',
+              height: '220px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(5, 51, 22, 0.85)',
+              border: '4px double rgba(245, 158, 11, 0.5)',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.5), inset 0 0 20px rgba(245, 158, 11, 0.2)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              padding: '20px',
+              backdropFilter: 'blur(8px)',
+              color: 'white'
+            }}>
+              <Sparkles size={24} style={{ color: 'var(--color-secondary)', marginBottom: '10px' }} />
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: '700', letterSpacing: '0.5px', color: '#ffffff', margin: '0 0 4px 0' }}>100% Pure</h3>
+              <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '2px', color: 'var(--color-secondary)', fontWeight: '700' }}>Artisan Quality</span>
+              <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.15)', width: '60%', margin: '12px 0' }} />
+              <span style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.7)', fontStyle: 'italic' }}>Jhabua's Pride Since 1984</span>
+            </div>
+          </div>
+
         </div>
 
       </section>
@@ -193,7 +240,7 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
             <div className="feature-circle-icon"><Award size={18} /></div>
             <div>
               <h4 style={{ fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-main)', fontFamily: 'var(--font-display)', lineHeight: '1.2' }}>Since 1984</h4>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Trusted in Jhabua</span>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>42 Years of Craftsmanship</span>
             </div>
           </div>
 
@@ -201,23 +248,23 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
             <div className="feature-circle-icon"><Flame size={18} /></div>
             <div>
               <h4 style={{ fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-main)', fontFamily: 'var(--font-display)', lineHeight: '1.2' }}>12+ Spices</h4>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Secret Family Recipe</span>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Secret Heirloom Masala</span>
             </div>
           </div>
 
           <div className="feature-item-col">
             <div className="feature-circle-icon"><Leaf size={18} /></div>
             <div>
-              <h4 style={{ fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-main)', fontFamily: 'var(--font-display)', lineHeight: '1.2' }}>Fresh & Crispy</h4>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Made Daily</span>
+              <h4 style={{ fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-main)', fontFamily: 'var(--font-display)', lineHeight: '1.2' }}>Pure Veg Kitchen</h4>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Strict Hygiene Standards</span>
             </div>
           </div>
 
           <div className="feature-item-col">
-            <div className="feature-circle-icon"><Sparkles size={18} /></div>
+            <div className="feature-circle-icon"><ShieldCheck size={18} /></div>
             <div>
-              <h4 style={{ fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-main)', fontFamily: 'var(--font-display)', lineHeight: '1.2' }}>Fast Delivery</h4>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>At Your Doorstep</span>
+              <h4 style={{ fontWeight: '800', fontSize: '0.9rem', color: 'var(--text-main)', fontFamily: 'var(--font-display)', lineHeight: '1.2' }}>Security Sealed</h4>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Vacuum Packed Fresh</span>
             </div>
           </div>
 
@@ -234,11 +281,11 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
               <span>Explore Menu</span>
               <Leaf size={12} />
             </span>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.8rem', marginTop: '8px', color: 'var(--color-primary)', fontWeight: '700', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
-              <span>Shop by Category</span>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.8rem', marginTop: '8px', color: 'var(--color-primary)', fontWeight: '700' }}>
+              Shop by Category
             </h2>
             <p style={{ color: 'var(--text-muted)', maxWidth: '520px', margin: '10px auto 0', fontSize: '0.95rem' }}>
-              Choose from fresh crispy kachoris or roasted ground pantry masalas, shipped securely.
+              Select fresh flaky gourmet kachoris or woodfire roasted spices shipped directly from our Jhabua kitchen.
             </p>
           </div>
 
@@ -292,7 +339,7 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
 
       {/* Jhabua's Famous Heritage Pride & Trust Banner */}
       <section style={{ 
-        padding: '80px 0', 
+        padding: '90px 0', 
         backgroundColor: 'var(--color-primary)', 
         color: 'white',
         backgroundImage: 'linear-gradient(135deg, var(--color-primary), #03220e)',
@@ -453,7 +500,6 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
         overflow: 'hidden'
       }}>
         
-        {/* Soft background gradient mask */}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -485,7 +531,7 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
                 100% Pure Vegetarian
               </h3>
               <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: '1.5' }}>
-                Seeded under strict pure-veg kitchen audits using high-quality double-refined oil with zero animal traces.
+                Cooked under strict pure vegetarian kitchen guidelines with premium double-refined oil and zero trans-fats.
               </p>
             </div>
           </div>
@@ -506,10 +552,10 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
             </div>
             <div>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: '700', marginBottom: '6px', color: 'white' }}>
-                Woodfire Coal Oven Roast
+                Traditional Roasting
               </h3>
               <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: '1.5' }}>
-                Our signature 12-spice kachori masala is gently coal-roasted on low fires for maximum aroma retention.
+                Our iconic 12-spice recipe is slowly charcoal oven-roasted over low fire beds to extract maximum aroma oils.
               </p>
             </div>
           </div>
@@ -530,10 +576,10 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
             </div>
             <div>
               <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', fontWeight: '700', marginBottom: '6px', color: 'white' }}>
-                FSSAI Certified Shipping
+                Vacuum-Sealed Fresh
               </h3>
               <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.7)', lineHeight: '1.5' }}>
-                Sealed dry masalas and quick cooking mixes vacuum-packaged to retain freshness during 3-4 days dispatch.
+                Vacuum-packed immediately after cooling in sterilised boxes to lock freshness, crunch, and aroma intact.
               </p>
             </div>
           </div>
@@ -541,86 +587,7 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
         </div>
       </section>
 
-      {/* Heritage Story Section */}
-      <section id="heritage-story" style={{ padding: '100px 0', backgroundColor: 'white', position: 'relative' }}>
-        <div className="container heritage-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.1fr', gap: '60px', alignItems: 'center' }}>
-          
-          {/* Graphic Side */}
-          <div style={{ position: 'relative' }}>
-            <img 
-              src="/images/kachori_masala.jpg" 
-              alt="Premium Raw Indian Spices" 
-              style={{
-                borderRadius: 'var(--radius-lg)',
-                boxShadow: 'var(--shadow-lg)',
-                width: '100%',
-                height: '440px',
-                objectFit: 'cover',
-                border: '1px solid var(--border-light)'
-              }}
-            />
-            <div style={{
-              position: 'absolute',
-              bottom: '-20px',
-              right: '-20px',
-              backgroundColor: 'var(--color-secondary)',
-              color: 'white',
-              padding: '24px',
-              borderRadius: '12px',
-              boxShadow: 'var(--shadow-md)',
-              fontFamily: 'var(--font-serif)',
-              textAlign: 'center',
-              zIndex: 2,
-              border: '2px solid white'
-            }} className="experience-badge">
-              <span style={{ fontSize: '2.5rem', fontWeight: '800', display: 'block', lineHeight: '1' }}>42+</span>
-              <span style={{ fontSize: '0.8rem', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>Years of Culinary Craft</span>
-            </div>
-          </div>
 
-          {/* Text Side */}
-          <div>
-            <span style={{ color: 'var(--color-success)', fontWeight: '700', fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '2px' }}>
-              Family Heritage Legacy
-            </span>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', marginTop: '8px', marginBottom: '20px', color: 'var(--color-primary)', fontWeight: '700' }}>
-              Born in Jhabua, Ground for Connoisseurs
-            </h2>
-            <p style={{ color: 'var(--text-muted)', marginBottom: '16px', fontSize: '0.98rem', lineHeight: '1.6' }}>
-              For over four decades, Mahesvari Kachori has stood as the culinary heartbeat of Rajwada Chowk in Jhabua, serving a legendary recipe that has defined the flavor profile of street snacks in Central India. Founded by Shri Mahesvari, our brand started on a simple clay coal burner.
-            </p>
-            <p style={{ color: 'var(--text-muted)', marginBottom: '28px', fontSize: '0.98rem', lineHeight: '1.6' }}>
-              The magic lies in our core stuffing masala: a balanced combination of 12 distinct dry whole spices, roasted gently over a woodfire and ground manually. Today, we bring this same heritage to kitchens across the nation, offering ready-made masalas and quick cooking mixes shipped straight from Jhabua under sterile vacuum-seals.
-            </p>
-            
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-              {[
-                'Time-Honored Heirloom Recipe',
-                'Coal-Oven Charcoal Roasting',
-                '100% Preservative Free',
-                'Loved by 10k+ Families'
-              ].map((point) => (
-                <div key={point} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <div style={{
-                    width: '20px',
-                    height: '20px',
-                    borderRadius: '50%',
-                    backgroundColor: 'rgba(21, 128, 61, 0.1)',
-                    color: 'var(--color-success)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}>
-                    <Check size={12} />
-                  </div>
-                  <span style={{ fontWeight: '600', fontSize: '0.88rem', color: 'var(--text-main)' }}>{point}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-        </div>
-      </section>
 
       {/* Premium Customer Testimonials Section */}
       <section style={{ padding: '80px 0', borderTop: '1px solid var(--border-light)' }}>
@@ -732,7 +699,7 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
             right: 10px !important;
             padding: 12px 18px !important;
           }
-          .hero-luxury-image {
+          .hero-image {
             max-width: 360px !important;
             height: 380px !important;
           }
@@ -750,9 +717,6 @@ export const Home: React.FC<HomeProps> = ({ onQuickView }) => {
             text-align: center !important;
             justify-content: center !important;
             flex-direction: column !important;
-          }
-          .hero-float-card {
-            display: none !important; /* Hide floating overlays on very small mobile to prevent text overlaps */
           }
         }
       `}</style>

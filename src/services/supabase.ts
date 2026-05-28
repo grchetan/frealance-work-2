@@ -1,10 +1,13 @@
+import { createClient } from '@supabase/supabase-js';
 import { Product, Order, User, Address, Review, AnalyticsData } from '../types';
 
-// Read optional environmental configurations
+// Read environmental configurations
 const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL || '';
 const SUPABASE_ANON_KEY = import.meta.env?.VITE_SUPABASE_ANON_KEY || '';
 
-// --- SEED SEED DATA FOR SIMULATOR ---
+export const isSupabaseConfigured = !!(SUPABASE_URL && SUPABASE_ANON_KEY);
+
+// --- SEED DATA FOR SIMULATOR ---
 const INITIAL_PRODUCTS = [
   {
     id: 1,
@@ -74,7 +77,7 @@ const INITIAL_PRODUCTS = [
     category: 'Snacks',
     image_url: '/images/sweet_mawa_kachori.png',
     spice_level: 1,
-    stock_quantity: 5, // low stock testing
+    stock_quantity: 15, 
     weight_options: ['Pack of 2', 'Pack of 4'],
     ingredients: 'Refined Flour, Condensed Milk (Mawa), Almonds, Pistachios, Cashews, Saffron, Organic Cane Sugar, Pure Desi Ghee.',
     is_featured: false,
@@ -131,6 +134,7 @@ const INITIAL_REVIEWS = [
   {
     id: 501,
     product_id: 1,
+    user_id: 'user-customer-uuid-2026',
     user_name: 'Ananya Hegde',
     rating: 5,
     comment: 'Unbelievably crispy! The core masala is spicy and fragrant. Reminded me of my childhood visits to Jhabua. Shipped quickly and safely to Bangalore!',
@@ -139,10 +143,28 @@ const INITIAL_REVIEWS = [
   {
     id: 502,
     product_id: 2,
+    user_id: 'user-customer-uuid-2026',
     user_name: 'Rohan Sharma',
     rating: 5,
     comment: 'This masala is pure magic. Ground fennel and roasted coriander profiles are incredible. Elevates ordinary home curries completely.',
     created_at: '2026-05-24T14:30:00Z'
+  }
+];
+
+const INITIAL_BANNERS = [
+  {
+    id: 1,
+    text: '🌱 Special Launch Code: JHABUA15 - Flat 15% Off Your Entire Cart!',
+    bg_color: '#053316',
+    text_color: '#ffffff',
+    is_active: true
+  },
+  {
+    id: 2,
+    text: '🚚 Free standard vacuum-sealed delivery on all order checkouts above ₹300!',
+    bg_color: '#c25010',
+    text_color: '#ffffff',
+    is_active: true
   }
 ];
 
@@ -163,6 +185,9 @@ const setupSimulatorStorage = () => {
   }
   if (!localStorage.getItem('sb_orders')) {
     localStorage.setItem('sb_orders', JSON.stringify([]));
+  }
+  if (!localStorage.getItem('sb_banners')) {
+    localStorage.setItem('sb_banners', JSON.stringify(INITIAL_BANNERS));
   }
 };
 
@@ -198,7 +223,6 @@ class SupabaseSimulator {
       const users: any[] = JSON.parse(localStorage.getItem('sb_users') || '[]');
       const matched = users.find(u => u.email === email);
       
-      // Seed password check bypass for testing simplicity
       if (matched) {
         localStorage.setItem('sb_session_user', JSON.stringify(matched));
         return { data: { user: matched, session: { access_token: 'mock-jwt-token' } }, error: null };
@@ -217,7 +241,6 @@ class SupabaseSimulator {
     }
   };
 
-  // Fluent query builder simulator
   from(table: string) {
     return new QueryBuilder(table);
   }
@@ -244,13 +267,12 @@ class QueryBuilder {
   }
 
   select(columns: string = '*') {
-    // Fluent chains
     return this;
   }
 
   eq(column: string, value: any) {
     this.filters.push((item) => {
-      if (column === 'user_id' || column === 'id' || column === 'product_id') {
+      if (column === 'user_id' || column === 'id' || column === 'product_id' || column === 'is_active') {
         return item[column]?.toString() === value?.toString();
       }
       return item[column] === value;
@@ -295,7 +317,6 @@ class QueryBuilder {
     const key = `sb_${this.table}`;
     
     this.data = this.data.map(item => {
-      // Check if item matches current filter chain
       const isMatch = this.filters.every(filter => filter(item));
       if (isMatch) {
         return { ...item, ...changes };
@@ -316,16 +337,13 @@ class QueryBuilder {
   }
 
   async then(resolve: any) {
-    // Execute query simulation
     await this.delay(300);
     let result = [...this.data];
 
-    // Apply filters
     if (this.filters.length > 0) {
       result = result.filter(item => this.filters.every(filter => filter(item)));
     }
 
-    // Apply sorting
     if (this.sortField) {
       result.sort((a, b) => {
         const valA = a[this.sortField];
@@ -336,7 +354,6 @@ class QueryBuilder {
       });
     }
 
-    // Apply limits
     if (this.limitCount > 0) {
       result = result.slice(0, this.limitCount);
     }
@@ -351,5 +368,6 @@ class QueryBuilder {
 }
 
 // Export Client Instance
-// If Supabase keys are present in env, you can swap this for a real Supabase Client!
-export const supabase = new SupabaseSimulator() as any;
+export const supabase = isSupabaseConfigured 
+  ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) 
+  : (new SupabaseSimulator() as any);

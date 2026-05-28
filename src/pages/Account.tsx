@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Order, Address } from '../types';
-import { User as UserIcon, Lock, Mail, Phone, MapPin, Package, Clock, Eye, EyeOff, Trash2, ArrowRight, ShieldCheck, Truck, Check } from 'lucide-react';
+import { User as UserIcon, Lock, Mail, Phone, MapPin, Package, Clock, Eye, EyeOff, Trash2, ArrowRight, ShieldCheck, Truck, Check, Flame, CheckCircle } from 'lucide-react';
 
 export const Account: React.FC = () => {
   const { 
@@ -123,9 +123,11 @@ export const Account: React.FC = () => {
   // Helper for tracking timeline steps
   const getTimelineProgress = (status: Order['status']) => {
     if (status === 'pending') return { fill: '0%', index: 0 };
-    if (status === 'preparing') return { fill: '25%', index: 1 };
-    if (status === 'dispatched') return { fill: '50%', index: 2 };
-    if (status === 'delivered') return { fill: '100%', index: 4 };
+    if (status === 'confirmed') return { fill: '20%', index: 1 };
+    if (status === 'preparing') return { fill: '40%', index: 2 };
+    if (status === 'packed') return { fill: '60%', index: 3 };
+    if (status === 'out_for_delivery') return { fill: '80%', index: 4 };
+    if (status === 'delivered') return { fill: '100%', index: 5 };
     return { fill: '0%', index: 0 }; // cancelled or fallback
   };
 
@@ -133,11 +135,14 @@ export const Account: React.FC = () => {
     let color = 'var(--text-muted)';
     let bg = 'var(--border-light)';
     
-    if (status === 'pending') { color = 'var(--color-primary)'; bg = 'rgba(217,119,6,0.1)'; }
-    else if (status === 'preparing') { color = 'var(--color-secondary)'; bg = 'rgba(185,28,28,0.1)'; }
-    else if (status === 'dispatched') { color = '#3b82f6'; bg = 'rgba(59,130,246,0.1)'; }
+    if (status === 'pending') { color = 'var(--color-primary)'; bg = 'rgba(5,51,22,0.1)'; }
+    else if (status === 'confirmed') { color = '#3b82f6'; bg = 'rgba(59,130,246,0.1)'; }
+    else if (status === 'preparing') { color = 'var(--color-secondary)'; bg = 'rgba(194,80,16,0.1)'; }
+    else if (status === 'packed') { color = '#8b5cf6'; bg = 'rgba(139,92,246,0.1)'; }
+    else if (status === 'out_for_delivery') { color = '#06b6d4'; bg = 'rgba(6,182,212,0.1)'; }
     else if (status === 'delivered') { color = 'var(--color-success)'; bg = 'rgba(21,128,61,0.1)'; }
-    else if (status === 'cancelled') { color = 'gray'; bg = 'rgba(0,0,0,0.05)'; }
+    else if (status === 'cancelled') { color = '#ef4444'; bg = 'rgba(239,68,68,0.1)'; }
+    else if (status === 'refunded') { color = '#f97316'; bg = 'rgba(249,115,22,0.1)'; }
 
     return (
       <span style={{
@@ -150,7 +155,7 @@ export const Account: React.FC = () => {
         textTransform: 'uppercase',
         fontFamily: 'var(--font-display)'
       }}>
-        {status}
+        {status === 'pending' ? 'Order Received' : status === 'out_for_delivery' ? 'Out for Delivery' : status}
       </span>
     );
   };
@@ -508,10 +513,35 @@ export const Account: React.FC = () => {
                   </div>
                 </div>
 
+                {user.role === 'admin' && (
+                  <button 
+                    className="btn btn-primary" 
+                    onClick={() => navigateTo('admin-dashboard')}
+                    style={{ 
+                      width: '100%', 
+                      borderRadius: '8px', 
+                      marginTop: '20px',
+                      backgroundColor: 'var(--color-primary)',
+                      color: 'white',
+                      fontWeight: '700',
+                      fontSize: '0.85rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '8px',
+                      border: 'none',
+                      boxShadow: '0 4px 12px rgba(5, 51, 22, 0.2)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    🛠️ Open Admin Dashboard
+                  </button>
+                )}
+
                 <button 
                   className="btn btn-secondary btn-sm" 
                   onClick={logout}
-                  style={{ width: '100%', borderRadius: '8px', marginTop: '24px', color: 'var(--color-secondary)' }}
+                  style={{ width: '100%', borderRadius: '8px', marginTop: '12px', color: 'var(--color-secondary)' }}
                 >
                   Log Out Session
                 </button>
@@ -762,69 +792,103 @@ export const Account: React.FC = () => {
                   </p>
 
                   {/* Status checklist condition */}
-                  {trackingOrder.status === 'cancelled' ? (
-                    <div style={{ textAlign: 'center', padding: '24px', backgroundColor: 'rgba(0,0,0,0.03)', borderRadius: '12px' }}>
-                      <p style={{ fontWeight: '700', color: 'var(--color-secondary)', fontSize: '1.1rem' }}>Order Cancelled</p>
-                      <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '4px' }}>
-                        This order was successfully cancelled on database logs. Your refund has been compiled under ID: {trackingOrder.transaction_id || 'REF-TXN-COD'}.
+                  {trackingOrder.status === 'cancelled' || trackingOrder.status === 'refunded' ? (
+                    <div style={{ textAlign: 'center', padding: '30px 24px', backgroundColor: 'rgba(239, 68, 68, 0.05)', border: '1px dashed #ef4444', borderRadius: '12px', marginBottom: '16px' }}>
+                      <p style={{ fontWeight: '800', color: '#ef4444', fontSize: '1.2rem', fontFamily: 'var(--font-display)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                        <span>Order {trackingOrder.status === 'refunded' ? 'Cancelled & Refunded' : 'Cancelled'}</span>
+                      </p>
+                      <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginTop: '8px', lineHeight: '1.5' }}>
+                        {trackingOrder.status === 'refunded' 
+                          ? 'This order has been cancelled and a full refund has been credited back to your original source of payment. Transaction ID: '
+                          : 'This order was cancelled on our fulfillment database ledger. Refund details: '}
+                        <strong>{trackingOrder.transaction_id || 'REF-TXN-UPI-MOCK'}</strong>.
                       </p>
                     </div>
                   ) : (
                     <>
                       {/* Tracking timeline dots */}
-                      <div className="timeline">
-                        <div className="timeline-bar-fill" style={{ width: getTimelineProgress(trackingOrder.status).fill }}></div>
+                      <div className="timeline" style={{ margin: '40px 0', display: 'flex', justifyContent: 'space-between', position: 'relative' }}>
+                        <div className="timeline-bar-fill" style={{ 
+                          position: 'absolute', 
+                          top: '18px', 
+                          left: '0', 
+                          height: '3px', 
+                          backgroundColor: 'var(--color-success)', 
+                          zIndex: 2, 
+                          transition: 'width 0.4s ease',
+                          width: getTimelineProgress(trackingOrder.status).fill 
+                        }}></div>
                         
                         <div className={`timeline-step ${getTimelineProgress(trackingOrder.status).index >= 0 ? 'timeline-completed' : ''} ${trackingOrder.status === 'pending' ? 'timeline-active' : ''}`}>
                           <div className="timeline-dot"><Clock size={14} /></div>
-                          <span className="timeline-label">Placed</span>
+                          <span className="timeline-label" style={{ fontSize: '0.65rem' }}>Received</span>
                         </div>
 
-                        <div className={`timeline-step ${getTimelineProgress(trackingOrder.status).index >= 1 ? 'timeline-completed' : ''} ${trackingOrder.status === 'preparing' ? 'timeline-active' : ''}`}>
+                        <div className={`timeline-step ${getTimelineProgress(trackingOrder.status).index >= 1 ? 'timeline-completed' : ''} ${trackingOrder.status === 'confirmed' ? 'timeline-active' : ''}`}>
+                          <div className="timeline-dot"><CheckCircle size={14} /></div>
+                          <span className="timeline-label" style={{ fontSize: '0.65rem' }}>Confirmed</span>
+                        </div>
+
+                        <div className={`timeline-step ${getTimelineProgress(trackingOrder.status).index >= 2 ? 'timeline-completed' : ''} ${trackingOrder.status === 'preparing' ? 'timeline-active' : ''}`}>
+                          <div className="timeline-dot"><Flame size={14} /></div>
+                          <span className="timeline-label" style={{ fontSize: '0.65rem' }}>Cooking</span>
+                        </div>
+
+                        <div className={`timeline-step ${getTimelineProgress(trackingOrder.status).index >= 3 ? 'timeline-completed' : ''} ${trackingOrder.status === 'packed' ? 'timeline-active' : ''}`}>
                           <div className="timeline-dot"><Package size={14} /></div>
-                          <span className="timeline-label">Preparing</span>
+                          <span className="timeline-label" style={{ fontSize: '0.65rem' }}>Packed</span>
                         </div>
 
-                        <div className={`timeline-step ${getTimelineProgress(trackingOrder.status).index >= 2 ? 'timeline-completed' : ''} ${trackingOrder.status === 'dispatched' ? 'timeline-active' : ''}`}>
+                        <div className={`timeline-step ${getTimelineProgress(trackingOrder.status).index >= 4 ? 'timeline-completed' : ''} ${trackingOrder.status === 'out_for_delivery' ? 'timeline-active' : ''}`}>
                           <div className="timeline-dot"><Truck size={14} /></div>
-                          <span className="timeline-label">Dispatched</span>
+                          <span className="timeline-label" style={{ fontSize: '0.65rem' }}>Out for Delivery</span>
                         </div>
 
                         <div className={`timeline-step ${trackingOrder.status === 'delivered' ? 'timeline-completed' : ''}`}>
                           <div className="timeline-dot"><Check size={14} /></div>
-                          <span className="timeline-label">Delivered</span>
+                          <span className="timeline-label" style={{ fontSize: '0.65rem' }}>Delivered</span>
                         </div>
                       </div>
 
                       {/* Descriptive logs */}
                       <div style={{
                         backgroundColor: 'var(--bg-body)',
-                        padding: '16px',
+                        padding: '18px 20px',
                         borderRadius: 'var(--radius-md)',
                         border: '1px solid var(--border-light)',
                         fontSize: '0.85rem'
                       }}>
-                        <span style={{ fontWeight: '700', display: 'block', marginBottom: '8px', color: 'var(--text-main)' }}>Delivery Timeline Specifications:</span>
+                        <span style={{ fontWeight: '800', display: 'block', marginBottom: '10px', color: 'var(--text-main)', fontFamily: 'var(--font-display)', fontSize: '0.9rem' }}>Delivery Progress Specifications:</span>
                         
                         <ul style={{ paddingLeft: '16px', display: 'flex', flexDirection: 'column', gap: '10px', color: 'var(--text-muted)' }}>
                           {getTimelineProgress(trackingOrder.status).index >= 0 && (
                             <li>
-                              <strong style={{ color: 'var(--text-main)' }}>Placed:</strong> Fulfills registered on SQL ledger. Estimated delivery within 45-60 mins for fresh hot food.
+                              <strong style={{ color: 'var(--text-main)' }}>Order Received:</strong> Transaction recorded on cloud ledger. Preparing raw materials in Jhabua kitchen.
                             </li>
                           )}
                           {getTimelineProgress(trackingOrder.status).index >= 1 && (
                             <li>
-                              <strong style={{ color: 'var(--text-main)' }}>Preparing:</strong> Heritage frying pans loaded. Puffed kachoris golden-frying, fresh chutney packing.
+                              <strong style={{ color: 'var(--text-main)' }}>Confirmed:</strong> Kitchen master accepted order. Preparing slow woodfire burners.
                             </li>
                           )}
                           {getTimelineProgress(trackingOrder.status).index >= 2 && (
                             <li>
-                              <strong style={{ color: 'var(--text-main)' }}>Dispatched:</strong> Fulfills handed over to courier rider Suresh Kumar (+91 94254 78201) in Jhabua.
+                              <strong style={{ color: 'var(--text-main)' }}>Preparing:</strong> Traditional frying pans loaded. Kachoris frying to crisp golden, chutneys packing fresh.
+                            </li>
+                          )}
+                          {getTimelineProgress(trackingOrder.status).index >= 3 && (
+                            <li>
+                              <strong style={{ color: 'var(--text-main)' }}>Packed:</strong> Vacuum-packed immediately under FSSAI hygiene guidelines. Box sealed with brand tags.
+                            </li>
+                          )}
+                          {getTimelineProgress(trackingOrder.status).index >= 4 && (
+                            <li>
+                              <strong style={{ color: 'var(--text-main)' }}>Out for Delivery:</strong> Dispatch rider handed box. Courier rider Suresh Kumar (+91 94254 78201) is transit-bound.
                             </li>
                           )}
                           {trackingOrder.status === 'delivered' && (
                             <li>
-                              <strong style={{ color: 'var(--color-success)' }}>Delivered:</strong> Completed successfully! Enjoy Jhabua's finest heritage hot food.
+                              <strong style={{ color: 'var(--color-success)' }}>Delivered:</strong> Transaction completed successfully. Savor Jhabua's finest heritage gourmet food!
                             </li>
                           )}
                         </ul>

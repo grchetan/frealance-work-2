@@ -59,6 +59,19 @@ interface AppContextType {
   // Navigation helpers
   navigateTo: (view: string, params?: { productId?: number; orderId?: number }) => void;
   showToast: (message: string, type?: Toast['type']) => void;
+
+  // Banner Operations
+  activeBanners: any[];
+  adminBanners: any[];
+  fetchBannersList: () => Promise<void>;
+  adminCreateBanner: (bannerData: any) => Promise<boolean>;
+  adminUpdateBanner: (id: number, bannerData: any) => Promise<boolean>;
+  adminDeleteBanner: (id: number) => Promise<boolean>;
+
+  // Review Moderation Operations
+  adminReviews: Review[];
+  adminFetchReviewsList: () => Promise<void>;
+  adminDeleteReview: (id: number) => Promise<boolean>;
 }
 
 export interface CartItem {
@@ -93,6 +106,75 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [adminOrders, setAdminOrders] = useState<Order[]>([]);
   const [adminCustomers, setAdminCustomers] = useState<any[]>([]);
   const [adminAnalytics, setAdminAnalytics] = useState<AnalyticsData | null>(null);
+
+  // Dynamic Banner States
+  const [activeBanners, setActiveBanners] = useState<any[]>([]);
+  const [adminBanners, setAdminBanners] = useState<any[]>([]);
+
+  // Review Moderation States
+  const [adminReviews, setAdminReviews] = useState<Review[]>([]);
+
+  // Banner Management Operations
+  const fetchBannersList = async () => {
+    const { data } = await supabase.from('banners').select('*').order('id', { ascending: true });
+    if (data) {
+      setAdminBanners(data);
+      setActiveBanners(data.filter((b: any) => b.is_active));
+    }
+  };
+
+  const adminCreateBanner = async (bannerData: any) => {
+    const { error } = await supabase.from('banners').insert(bannerData);
+    if (error) {
+      showToast('Error introducing banner.', 'error');
+      return false;
+    }
+    showToast('New dynamic banner activated!', 'success');
+    fetchBannersList();
+    return true;
+  };
+
+  const adminUpdateBanner = async (id: number, bannerData: any) => {
+    const { error } = await supabase.from('banners').update(bannerData).eq('id', id);
+    if (error) {
+      showToast('Error modifying banner.', 'error');
+      return false;
+    }
+    showToast('Banner parameters saved.', 'success');
+    fetchBannersList();
+    return true;
+  };
+
+  const adminDeleteBanner = async (id: number) => {
+    const { error } = await supabase.from('banners').delete().eq('id', id);
+    if (error) {
+      showToast('Error removing banner.', 'error');
+      return false;
+    }
+    showToast('Banner removed.', 'info');
+    fetchBannersList();
+    return true;
+  };
+
+  // Review Moderation Operations
+  const adminFetchReviewsList = async () => {
+    const { data } = await supabase.from('reviews').select('*').order('id', { ascending: false });
+    if (data) {
+      setAdminReviews(data);
+    }
+  };
+
+  const adminDeleteReview = async (id: number) => {
+    const { error } = await supabase.from('reviews').delete().eq('id', id);
+    if (error) {
+      showToast('Error removing review.', 'error');
+      return false;
+    }
+    showToast('Review removed from catalog.', 'info');
+    adminFetchReviewsList();
+    fetchProductsList(); // Sync storefront
+    return true;
+  };
 
   // Toast Notification System
   const showToast = (message: string, type: Toast['type'] = 'info') => {
@@ -135,6 +217,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setAddresses([]);
       }
     });
+
+    // Load dynamic banners
+    fetchBannersList();
+
     return () => unsubscribe();
   }, []);
 
@@ -160,7 +246,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const signup = async (name: string, email: string, password: string, phone: string) => {
     setLoading(true);
     try {
-      const { user: firebaseUser } = await auth.createUserWithEmailAndPassword(email, {
+      const { user: firebaseUser } = await auth.createUserWithEmailAndPassword(email, password, {
         displayName: name,
         phone
       });
@@ -182,7 +268,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      const { user: firebaseUser } = await auth.signInWithEmailAndPassword(email);
+      const { user: firebaseUser } = await auth.signInWithEmailAndPassword(email, password);
       setLoading(false);
 
       if (firebaseUser) {
@@ -939,6 +1025,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         adminUpdateProduct,
         adminDeleteProduct,
         adminFetchCustomersList,
+        activeBanners,
+        adminBanners,
+        fetchBannersList,
+        adminCreateBanner,
+        adminUpdateBanner,
+        adminDeleteBanner,
+        adminReviews,
+        adminFetchReviewsList,
+        adminDeleteReview,
         navigateTo,
         showToast
       }}
